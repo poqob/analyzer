@@ -1,0 +1,202 @@
+yapýlacaklar:
+
+program parametre olarak bir java dosyasý alacak.
+
+elde olanlar:
+	dosyaya özel:
+		tek_satýr_yorumlarý.txt
+		çok_satýr_yorumlarý.txt
+		java_dokuman_yorumlarý.txt
+		
+	(T)txt formatý:
+	----------------------------------------------------(basla)
+		Fonksiyon: foksiyon adý
+			Yorum: yorum(tek satýra sýðacak)
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------(basla-dur)
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------(basla-dur)
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------(basla-dur)
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------(dur)
+
+	fonksiyon, tek_satir 
+	
+	araþtýrma: java string metotlarý:
+		buffered reader
+		String().match() --regex
+		
+ yapýlmasý gerekenler:
+ 	fonksiyon tespiti
+ 	tek satýr yorum tespiti
+ 	javadoc yorum tespiti
+ 	çok satýr yorum tespiti
+ 	
+ algoritma:
+ 	OKUMA 1:
+ 		Tüm dosyadan fonksiyonlarýn adlarý ve aralýklarý (satýr numaralarý) ayýklansýn. 
+ 		(fonksiyonA,[20,30]), 20 ie 30 arasýný fonksiyonA kapsamakta.
+ 		
+ 		elde edilen deðerler Uygun bir sýnýfa aktarýlsýn.
+ 			Sýnýf Özellikleri:
+ 				alan fonksiyon	tip: Fonksiyon(ad,baþlangýç satýr numarasý, bitiþ satýr numarasý)
+ 				alan tekYorumListesi tip: List<tekYorum>, tekYorum extends Yorum
+ 				alan çokYorumListesi tip: List<çokYorum> çokYorum extends Yorum
+ 				alan javadocYorumListesi tip: List<javadocYorum> javadocYorum extends Yorum
+ 		
+ 	OKUMA 2:
+ 		Oluþturulan Fonksiyon sýnýflarý
+ 	
+ 	
+ 	
+ 	
+ 	
+ Veri Sýnýflarý:
+ 	abstract Yorum:
+ 		alan baþlangýç
+ 		alan bitiþ
+ 		alan içerik
+ 	
+ 	
+ 	tekYorum extends Yorum:
+ 		alan baþlangýç = super.baþlangýç = super.bitiþ
+ 		alan içerik = super.içerik
+ 	
+ 	çokYorum extends Yorum:
+ 		alan baþlangýç = super.baþlangýç
+ 		alan bitiþ = super.bitiþ
+ 		alan içerik = super.içerik
+ 		
+ 	javadocYorum  extends Yorum:
+ 		alan baþlangýç = super.baþlangýç
+ 		alan bitiþ = super.bitiþ
+ 		alan içerik = super.içerik
+ 	
+ 	
+ 	Fonksiyon:
+ 		alan baþlangýç
+ 		alan bitiþ
+ 		alan içerik
+ 		
+ 	Fonksiyon ve yorumlarý:
+ 		alan Fonksiyon
+ 		alan tekYorumListesi
+ 		alan çokYorumListesi 
+ 		alan javadocYorumListesi 
+ 	
+ 	Sýnýf(String path):
+ 		alan fonksiyonVeYorumlarýListesi List<FonksiyonVeYorumlarý>
+ 		List<fonksiyonVeYorumlarý> böl() -> veri dönüþümü sýnýflarý.içerik parse(String path)
+ 		void yazdýr -> veri dönüþümü.dosyaya yazma sýnýfý(parametre)
+ 		void ekranaBastýr -> veri dönüþümü.ekrana bastýrma sýnýfý(fonksiyonVeYorumlarýListesi)
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ Veri manipülasyon Sýnýflarý:
+ 	
+ 	dosyadan okuma sýnýfý(path):
+ 		void oku(path)
+ 		return içerik
+ 	
+ 	dosyaya yazma sýnýfý (List<FonksiyonVeYorumlarý>, path=default):
+ 		alan path
+ 		void yazýcý
+ 	
+ 	ekrana bastýrma sýnýfý (List<FonksiyonVeYorumlarý>):
+ 		(çeþitli görsellik ve karakter alanlarý methodlarý eklenebilir)
+ 		void bastýr
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1: fonksiyon tespiti
+ 		fonksiyonlar tespit edilip Fonksiyon nesneleri oluþturulsun.
+ 		her oluþturulan fonksiyon akabinde fonksiyonVeYorumlarý nesnesi oluþsun.
+ 		Oluþturulan her fonksiyonVeYorumlarý nesnesi fonksiyonVeYorumlarý listesine alanýna eklensin. 
+ 	
+ 2: fonksiyon içi yorum tespiti
+ 		fonksiyonVeYorumlarýListesi for ile gezilsin ve her bir fonksiyonun belirtilen aralýklarý 
+ 		arasý baz alýnarak içerik alanýnýn ilgili satýrlarý arasýnda hedef kayýtlar aranýr.
+ 
+ 3: fonksiyon üstü yorum tespiti
+ 		fonksiyonlar arasý alan baz alýnarak bir tarama yapýlýr.
+ 		Bulunan yorumlar satýr sayýsý büyük olan fonksiyona aittir.
+ 
+ 
+ 
+ 
+ Veri Bölme Sýnýflarý:
+ 
+ 	içerik parse sýnýfý(String path):
+ 		(tüm olay burada)
+ 		
+ 		List<FonksiyonVeYorumlarý> fonksiyonVeYorumlarýListesi;
+ 		
+ 		String içerik = Veri manipülasyon Sýnýflarý.dosyadan okuma sýnýfý(path);
+ 		
+ 		void fonksiyon_bul ()
+ 				
+ 		void yorum_bul(aralýk [b,s]) //altýndaki hedef yorum bullarý aldýðý aralýða göre çaðýracak; fonksiyon içi ve fonksiyon üstü için çalýþacak(2).
+ 		
+ 		
+ 		void tek_yorum_bul(aralýk [b,s])
+ 		
+ 		void çok_yorum_bul(aralýk [b,s])
+ 		
+ 		void javadoc_bul(aralýk [b,s])
+ 		
+ 		return (fonksiyonVeYorumlarýListesi)
+ 		
+ 		
+ (PROBLEM)
+ fonksiyon nasýl bulunur:
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+		
