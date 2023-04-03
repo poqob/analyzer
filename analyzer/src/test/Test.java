@@ -8,8 +8,6 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import util.Todo;
-
 public class Test {
 
 	public Test() {
@@ -52,7 +50,6 @@ public class Test {
 		}
 	}
 
-	@Todo("there is a problem, it also reads javadoc comments :'(")
 	public static void _multiComment(String content) {
 		Paterns p = Paterns.multi;
 		Pattern pa = GetPatern.getPatern(p);
