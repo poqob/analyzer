@@ -11,3 +11,19 @@ asdsadfs
 *
 *javadoc
 **/
+
+public Test() {
+		String path = currPath().toAbsolutePath().toString().concat("\\src\\test\\test.txt");
+		_read(path);
+
+	}
+	
+	public Test(String a) 
+	{
+	
+	
+	public static Path currPath() {
+		Path currentDir = Paths.get("");
+		return currentDir;
+
+	}

@@ -1,5 +1,5 @@
 package test;
 
 public enum Paterns {
-	single, multi, javadoc
+	single, multi, javadoc, method, constructor
 }
