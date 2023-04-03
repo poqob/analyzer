@@ -8,7 +8,7 @@ public class GetPatern {
 		case single:
 			return Pattern.compile("//.*$");
 		case multi:
-			return Pattern.compile("/\\*(.|\\n)*?\\*/");
+			return Pattern.compile("/\\*(?!\\*).{2}.*?\\*/", Pattern.DOTALL);
 		case javadoc:
 			return Pattern.compile("/\\*\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/");
 		default:
