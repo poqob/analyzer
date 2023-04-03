@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import util.Todo;
+
 public class Test {
 
 	public Test() {
@@ -23,13 +25,16 @@ public class Test {
 	}
 
 	public static void _read(String dir) {
-
+		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = new BufferedReader(new FileReader(dir))) {
 			String line;
 
 			while ((line = br.readLine()) != null) {
+				sb.append(line).append("\n");
 				_singleComment(line);
 			}
+			_multiComment(sb.toString());
+			_javadocComment(sb.toString());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -45,6 +50,32 @@ public class Test {
 		while (matcher.find()) {
 			_writer(matcher.group().concat("\n"));
 		}
+	}
+
+	@Todo("there is a problem, it also reads javadoc comments :'(")
+	public static void _multiComment(String content) {
+		Paterns p = Paterns.multi;
+		Pattern pa = GetPatern.getPatern(p);
+		Matcher matcher = pa.matcher(content);
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+			_writer("Multi-line comment " + count + ": " + matcher.group() + "\n");
+		}
+	}
+
+	public static void _javadocComment(String content) {
+		Paterns p = Paterns.javadoc;
+		Pattern pa = GetPatern.getPatern(p);
+		Matcher matcher = pa.matcher(content);
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+			_writer("javadoc comment " + count + ": " + matcher.group() + "\n");
+		}
+
 	}
 
 	public static void _writer(String message) {
