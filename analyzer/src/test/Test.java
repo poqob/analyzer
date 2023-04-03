@@ -30,9 +30,12 @@ public class Test {
 			while ((line = br.readLine()) != null) {
 				sb.append(line).append("\n");
 				_singleComment(line);
+
 			}
 			_multiComment(sb.toString());
 			_javadocComment(sb.toString());
+			_methodDedect(sb.toString());
+			_constructorDedect(sb.toString());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,7 +75,30 @@ public class Test {
 			count++;
 			_writer("javadoc comment " + count + ": " + matcher.group() + "\n");
 		}
+	}
 
+	public static void _methodDedect(String content) {
+		Paterns p = Paterns.method;
+		Pattern pa = GetPatern.getPatern(p);
+		Matcher matcher = pa.matcher(content);
+
+		int count = 0;
+		while (matcher.find()) {
+
+			count++;
+			_writer("method: " + count + ": " + matcher.group() + "\n");
+		}
+	}
+
+	public static void _constructorDedect(String content) {
+		Paterns p = Paterns.constructor;
+		Pattern pa = GetPatern.getPatern(p);
+		Matcher matcher = pa.matcher(content);
+
+		int count = 0;
+		while (matcher.find()) {
+			_writer("constructor: " + ++count + ": " + matcher.group() + "\n");
+		}
 	}
 
 	public static void _writer(String message) {
