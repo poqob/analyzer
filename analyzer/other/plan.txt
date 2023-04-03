@@ -126,7 +126,7 @@ elde olanlar:
  
  
  
- 
+ 0: sýnýf ve yapýcý fonksiyon tespiti
  
  1: fonksiyon tespiti
  		fonksiyonlar tespit edilip Fonksiyon nesneleri oluþturulsun.
@@ -155,7 +155,7 @@ elde olanlar:
  		
  		void fonksiyon_bul ()
  				
- 		void yorum_bul(aralýk [b,s]) //altýndaki hedef yorum bullarý aldýðý aralýða göre çaðýracak; fonksiyon içi ve fonksiyon üstü için çalýþacak(2).
+ 		void yorum_bul(aralýk [b,s], atanacak fonksiyon) //altýndaki hedef yorum bullarý aldýðý aralýða göre çaðýracak; fonksiyon içi ve fonksiyon üstü için çalýþacak(2).
  		
  		
  		void tek_yorum_bul(aralýk [b,s])
@@ -169,8 +169,36 @@ elde olanlar:
  		
  (PROBLEM)
  fonksiyon nasýl bulunur:
+ 	fonksiyon-constructor baþlangýç satýrýný tespit edebiliyoruz.
  	
+ 				fonksiyon yapýsý:
+ 				
+ 					public static Path currPath() {			//tespit edilebilmiþ alan regex
+						Path currentDir = Paths.get("");	
+						for(){}								
+						fun(){}
+						return currentDir;
+					}										
  	
+ 	çözüm:
+ 		fonksiyon baþlýðýndan itibaren blok parantezleri solDýþ-saðDýþ sayýlmaya baþlanýr.
+ 		yukarýdaki örnek için.
+ 		
+ 		solDýþ		saðdýþ
+ 		1			0
+ 		1			0 		for {
+ 		0			1		for } total:  sol-2, sað-1
+ 		1			0		fun {
+ 		0			1		fun	} total:  sol-3, sað-2
+ 		0			1			  total:  sol-3, sað-3	(fonksiyonun tamamlandýðýný gösterir)
+ 		
+ 		foksiyon okuma tamamlandýðýnda son okunan satýr numarasý ve regex ile tespit edilen satýr numarasý
+ 		baz alýnrak yeni bir Fonksiyon nesnesi yaratýlýr.
+ 		
+ 		
+ 		
+ 	
+ 		
  	
  	
  	
