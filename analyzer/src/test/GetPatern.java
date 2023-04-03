@@ -7,15 +7,13 @@ public class GetPatern {
 		switch (patern) {
 		case single:
 			return Pattern.compile("//.*$");
-
+		case multi:
+			return Pattern.compile("/\\*(.|\\n)*?\\*/");
+		case javadoc:
+			return Pattern.compile("/\\*\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/");
 		default:
 			return Pattern.compile("//.*$");
 		}
 
 	}
-
-	public static void _writer(String message) {
-		System.out.print(message);
-	}
-
 }
