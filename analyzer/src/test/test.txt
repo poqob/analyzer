@@ -19,11 +19,10 @@ public Test() {
 	}
 	
 	public Test(String a) 
-	{
+	{}
 	
 	
 	public static Path currPath() {
 		Path currentDir = Paths.get("");
 		return currentDir;
-
 	}

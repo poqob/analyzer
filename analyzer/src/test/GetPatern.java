@@ -20,6 +20,7 @@ public class GetPatern {
 		default:
 			return Pattern.compile("//.*$");
 		}
-
 	}
 }
+//method
+//Pattern.compile("(public|private|protected)?\\s+static?\\s+\\w+\\s+(\\w+)\\s*\\([^\\)]*\\)\\s*\\{");
