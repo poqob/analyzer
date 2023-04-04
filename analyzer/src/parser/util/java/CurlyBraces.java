@@ -42,8 +42,8 @@ public class CurlyBraces {
 	};
 
 	// returns read data indexes according to input text.
-	public int[] getRange() {
-		return new int[] { firstBraceIndex, lastBraceIndex };
+	private int[] getRange() {
+		return new int[] { firstBraceIndex, lastBraceIndex + 1 };
 	};
 
 	// returns read data.
