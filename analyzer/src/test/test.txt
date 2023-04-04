@@ -1,4 +1,4 @@
-public class Test {
+
 
 
 // ornek1 
@@ -20,9 +20,8 @@ asdsadfs
 *
 */
 
-
-
-public Test() {
+	public class Test {
+	public Test() {
 		String path = currPath().toAbsolutePath().toString().concat("\\src\\test\\test.txt");
 		_read(path);
 
@@ -36,4 +35,7 @@ public Test() {
 		Path currentDir = Paths.get("");
 		return currentDir;
 	}
+	}
 	
+	
+
