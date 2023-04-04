@@ -9,31 +9,50 @@ public class CurlyBraces {
 	private int left = 0;
 	private int right = 0;
 
-	//
-	private int lastBraceIndex = 0;
+	// braces indexes
+	private int lastBraceIndex = -1;
+	private int firstBraceIndex = -1;
 
+	// contains body of the content that read by _read().
+	private StringBuilder sb = new StringBuilder();
+
+	// constructor
 	public CurlyBraces(String content) {
 		this.charArray = content.toCharArray();
+		_read();
 	}
 
-	public void read() {
+	// reads character array and counts '{','}' braces.
+	private void _read() {
+
 		for (char c : charArray) {
+			sb.append(c);
 			lastBraceIndex++;
-			System.out.print(c);
 			// counter counts
 			if (c == '{') {
 				left++;
+				if (firstBraceIndex == -1)
+					firstBraceIndex = lastBraceIndex;
 			} else if (c == '}') {
 				right++;
-				if (left == right) {
+				if (left == right)
 					break;
-				}
 			}
 		}
-		result();
 	};
 
-	public void result() {
-		System.out.print("\nleft: " + left + "\nright: " + right + "\nlastindex: " + lastBraceIndex);
+	// returns read data indexes according to input text.
+	public int[] getRange() {
+		return new int[] { firstBraceIndex, lastBraceIndex };
+	};
+
+	// returns read data.
+	public String getBody() {
+		return sb.substring(firstBraceIndex, lastBraceIndex + 1);
+	};
+
+	public String toString() {
+		return "\nleft: " + left + "\nright: " + right + "\nfirstindex: " + firstBraceIndex + "\nlastindex: "
+				+ lastBraceIndex + "\nbody:" + getBody();
 	};
 }
