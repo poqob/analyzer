@@ -1,7 +1,9 @@
 package parser.classes;
 
-public abstract class AClassParser {
+import models.classes.AClass;
 
+public abstract class AClassParser {
+	public abstract AClass parse();
 }
 
 /*
