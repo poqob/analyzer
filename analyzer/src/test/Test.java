@@ -15,7 +15,8 @@ public class Test {
 
 	public Test() {
 		String path = currPath().toAbsolutePath().toString().concat("\\src\\test\\test.txt");
-		_read(path);
+		_writer(path);
+		// _read(path);
 
 	}
 
