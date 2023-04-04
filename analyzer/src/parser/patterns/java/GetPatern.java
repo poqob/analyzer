@@ -17,6 +17,9 @@ public class GetPatern {
 			return Pattern.compile("(public|private|protected)?\\s+static?\\s+\\w+\\s+(\\w+)\\s*\\([^\\)]*\\)\\s*\\{");
 		case constructor:
 			return Pattern.compile("(public|protected|private)\\s+" + className + "\\s*\\(.*?\\)\\s*\\{");
+		case classes:
+			return Pattern.compile("^\\s*(public|private|protected)?\\s*(abstract)?\\s*class\\s+" + className
+					+ "\\s*(?:extends\\s+\\w+)?\\s*(?:implements\\s+\\w+(?:,\\s*\\w+)*)?\\s*\\{");
 		default:
 			return Pattern.compile("//.*$");
 		}
