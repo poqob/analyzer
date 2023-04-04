@@ -1,16 +1,26 @@
+public class Test {
+
+
 // ornek1 
+
 // ornek2 
+
 /* ornek3 */
+
 
 /*
 asdasdsd 
 asdsadfs
 */
 
+
 /**
 *
 *javadoc
-**/
+*
+*/
+
+
 
 public Test() {
 		String path = currPath().toAbsolutePath().toString().concat("\\src\\test\\test.txt");
@@ -26,3 +36,4 @@ public Test() {
 		Path currentDir = Paths.get("");
 		return currentDir;
 	}
+	

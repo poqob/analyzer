@@ -8,7 +8,8 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import util.Todo;
+import parser.patterns.java.GetPatern;
+import parser.patterns.java.Paterns;
 
 public class Test {
 
@@ -32,15 +33,15 @@ public class Test {
 			while ((line = br.readLine()) != null) {
 				sb.append(line).append("\n");
 
+				_readClassData(line);
 				_singleComment(line);
 
 			}
-			_writer(sb.toString().indexOf("public Test() {", 0) + "\n");
+
 			_multiComment(sb.toString());
 			_javadocComment(sb.toString());
 			_methodDedect(sb.toString());
 			_constructorDedect(sb.toString());
-			_fetchMethod(0, br);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -95,11 +96,16 @@ public class Test {
 		}
 	}
 
-	@Todo("class data must be readed first. then use class data in GetParent.constructor statement.")
-
-	public static void _readClassData() {
+	public static void _readClassData(String line) {
 		// class name
+		Paterns p = Paterns.classes;
+		Pattern pa = GetPatern.getPatern(p);
+		String ex = "public class Test{";
+		Matcher matcher = pa.matcher(line);
 
+		while (matcher.find()) {
+			_writer("class: " + matcher.group() + "\n");
+		}
 	}
 
 	public static void _constructorDedect(String content) {
@@ -110,18 +116,6 @@ public class Test {
 		int count = 0;
 		while (matcher.find()) {
 			_writer("constructor: " + ++count + ": " + matcher.group() + "\n");
-		}
-	}
-
-	public static void _fetchMethod(int startLine, BufferedReader br) {
-
-		String line;
-		int counter = 0;
-		int lb = 1;// left bracket
-		int rb = 0;// right bracket
-		_writer(br.lines().count());
-		for (int i = 0; i < br.lines().count(); i++) {
-
 		}
 	}
 
