@@ -20,7 +20,7 @@ public class JavaConstructorParser extends AFunctionParser {
 		super.funList = new ArrayList<AFunction>();
 	}
 
-	private String _find() {
+	private void _find() {
 		// variables
 		Paterns p = Paterns.constructor;
 		// GetPatern.className = _getName();
@@ -39,14 +39,13 @@ public class JavaConstructorParser extends AFunctionParser {
 			cb = new CurlyBraces(clss.toString().substring(_headIndex));
 
 			// range
-			range = new int[] { _headIndex, cb.getBody().length() };
+			range = new int[] { _headIndex, cb.getBody().length() + _headIndex };
 
 			// Debug.Writer(_getHead() + cb.getBody() + "\n");
 			// attemt to funList as new created AFunction
 			super.funList.add(new Constructor(_getName(), range, _getHead() + cb.getBody()));
 
 		}
-		return null;
 	}
 
 	// returns constructor definition line

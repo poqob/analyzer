@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import models.classes.JavaClass;
 import parser.classes.JavaClassParser;
-import parser.function.JavaConstructorParser;
-import util.Debug;
+import parser.function.JavaMethodParser;
 import util.Todo;
 
 @Todo("todo")
@@ -23,9 +22,14 @@ public class Program {
 		JavaClassParser cp = new JavaClassParser(path);
 		JavaClass clss = (JavaClass) cp.parse();
 		// Debug.Writer(clss.toString());
-		JavaConstructorParser cop = new JavaConstructorParser(clss);
 
-		cop.parse().forEach(f -> Debug.Writer(f.getContent() + "\n"));
+		// JavaConstructorParser cop = new JavaConstructorParser(clss);
+		// cop.parse().forEach(f -> Debug.Writer(f.getContent() + "\n"));
+
+		JavaMethodParser mep = new JavaMethodParser(clss);
+		// Debug.Writer(mep.parse().size() + "\n");
+		// mep.parse().forEach(m -> Debug.Writer(m.getName()));
+		mep.parse();
 	}
 
 }

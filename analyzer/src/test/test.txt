@@ -36,6 +36,11 @@ asdsadfs
 		Path currentDir = Paths.get("");
 		return currentDir;
 	}
+	
+	private String _getHead() {
+		return _head.substring(0, _head.length() - 1);
+	}
+	
 	}
 	
 	
