@@ -22,6 +22,7 @@ asdsadfs
 
 	public class Test {
 	
+	
 // ornek1 
 
 // ornek2 
@@ -40,12 +41,15 @@ asdsadfs
 *javadoc
 *
 */
+	
+
 	public Test() {
 		String path = currPath().toAbsolutePath().toString().concat("\\src\\test\\test.txt");
 		_read(path);
 
 	}
 	
+
 	public Test(String a) 
 	{}
 	
@@ -55,6 +59,7 @@ asdsadfs
 		return currentDir;
 	}
 	
+
 	private String _getHead() {
 		return _head.substring(0, _head.length() - 1);
 	}
