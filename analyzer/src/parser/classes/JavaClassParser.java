@@ -16,16 +16,17 @@ import util.Todo;
 public class JavaClassParser extends AClassParser {
 	// fields
 	private JavaClass clss;
-	private final String dir;
-	private final String name;
-	private final String pure;
-	private static String head;
+	private final String _path;
+	private String _name;
+	private static String __name;
+	private final String _pure;
+	private static String _head;
 
 	@Todo("accepts only absolut path i have to fix this ")
 	public JavaClassParser(String path) {
-		this.dir = path;
-		pure = find(path).toString();
-		this.name = getName();
+		this._path = path;
+		this._name = _getName(path);
+		_pure = find(path).toString();
 
 	}
 
@@ -34,6 +35,8 @@ public class JavaClassParser extends AClassParser {
 
 		// pattern
 		Paterns p = Paterns.classes;
+
+		GetPatern.className = __name;
 		Pattern pa = GetPatern.getPatern(p);
 		Matcher matcher = null;
 		StringBuilder sb = new StringBuilder();
@@ -49,7 +52,7 @@ public class JavaClassParser extends AClassParser {
 				matcher = pa.matcher(line);
 				if (matcher.find()) {
 					// attemt head line of class
-					head = matcher.group();
+					_head = matcher.group();
 					break;
 				}
 			}
@@ -76,25 +79,44 @@ public class JavaClassParser extends AClassParser {
 	}
 
 	// returns first line of clas definition without curly brace
-	public static String getHead() {
-		return head.substring(0, head.length() - 1);
+	private static String getHead() {
+		return _head.substring(0, _head.length() - 1);
 	}
 
 	// returns class name
-	private static String getName() {
-		String _head = head;
-		int _start = _head.indexOf("class") + 6;
-		int _stop = _head.indexOf("{");
-		return _head.substring(_start, _stop);
+	private static String _getName(String _dir) {
+		StringBuilder _allClass = new StringBuilder();
+		try (BufferedReader br = new BufferedReader(new FileReader(_dir))) {
+			String line;
+
+			// dedect which line is start of our scope
+			while ((line = br.readLine()) != null) {
+				_allClass.append(line);
+			}
+
+			br.close();
+
+		} catch (
+
+		IOException e) {
+			e.printStackTrace();
+		}
+
+		String head = _allClass.toString();
+		int _start = head.indexOf("class") + 6;
+		int _stop = head.indexOf("{");
+		__name = head.substring(_start, _stop).trim();
+		return __name;
 	}
 
+	// takes input file pure text and turns into AClass object
 	@Override
 	public AClass parse() {
-		CurlyBraces brc = new CurlyBraces(pure);
+		CurlyBraces brc = new CurlyBraces(_pure);
 
 		String struct = getHead() + brc.getBody();
 
-		clss = new JavaClass(getName(), struct);
+		clss = new JavaClass(_name, struct);
 		return clss;
 	}
 

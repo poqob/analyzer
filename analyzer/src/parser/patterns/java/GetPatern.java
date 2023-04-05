@@ -3,7 +3,7 @@ package parser.patterns.java;
 import java.util.regex.Pattern;
 
 public class GetPatern {
-	final static String className = "Test";
+	public static String className;
 
 	public static Pattern getPatern(Paterns patern) {
 		switch (patern) {
