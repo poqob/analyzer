@@ -17,7 +17,7 @@ public abstract class AClass {
 	};
 
 	public String getName() {
-		return name;
+		return name.trim();
 	};
 
 	public String toString() {
