@@ -1,17 +1,18 @@
-package parser.comment;
+package parser.comment.java;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import models.classes.JavaClass;
+import models.classes.java.JavaClass;
 import models.comment.AComment;
-import models.comment.JavaMultiComment;
-import models.comment.JavaSingleComment;
-import models.comment.JavadocComment;
+import models.comment.java.JavaMultiComment;
+import models.comment.java.JavaSingleComment;
+import models.comment.java.JavadocComment;
+import parser.comment.ACommentParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 
@@ -97,7 +98,7 @@ public class JavaCommentParser extends ACommentParser {
 	}
 
 	@Override
-	public List<AComment> parse() {
+	public ArrayList<AComment> parse() {
 		_find();
 		return super.comments;
 	}

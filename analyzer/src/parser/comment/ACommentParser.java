@@ -1,7 +1,6 @@
 package parser.comment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import models.classes.AClass;
 import models.comment.AComment;
@@ -16,7 +15,7 @@ public abstract class ACommentParser {
 		comments = new ArrayList<AComment>();
 	}
 
-	public List<AComment> parse() {
+	public ArrayList<AComment> parse() {
 		return comments;
 	}
 }
