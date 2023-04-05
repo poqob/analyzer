@@ -1,21 +1,23 @@
 package models.comment;
 
 public abstract class AComment {
-	protected final int startIndex;
-	protected final int finishIndex;
+	protected final int[] range;
 	protected final String content;
 
-	public AComment(int startIndex, int finishIndex, String content) {
-		this.startIndex = startIndex;
-		this.finishIndex = finishIndex;
+	public AComment(int[] range, String content) {
+		this.range = range;
 		this.content = content;
 	}
 
 	public int[] getRange() {
-		return new int[] { startIndex, finishIndex };
+		return range;
 	};
 
 	public String getContent() {
 		return content;
 	};
+
+	public String toString() {
+		return content + "\n{" + range[0] + "," + range[1] + "}\n";
+	}
 }
