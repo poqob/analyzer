@@ -6,7 +6,6 @@ import models.functionAndComments.AFunctionWithComments;
 
 public abstract class AClass {
 	protected final String name;
-
 	protected final String text;
 	protected ArrayList<AFunctionWithComments> processes;
 
