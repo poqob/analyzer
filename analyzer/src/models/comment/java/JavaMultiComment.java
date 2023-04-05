@@ -1,6 +1,8 @@
-package models.comment;
+package models.comment.java;
 
-public class JavaMultiComment extends AComment {
+import models.comment.AMultiComment;
+
+public class JavaMultiComment extends AMultiComment {
 
 	public JavaMultiComment(int[] range, String content) {
 		super(range, content);

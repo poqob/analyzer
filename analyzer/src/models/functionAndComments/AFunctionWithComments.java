@@ -3,45 +3,45 @@ package models.functionAndComments;
 import java.util.ArrayList;
 
 import models.comment.AComment;
-import models.comment.JavadocComment;
-import models.comment.JavaMultiComment;
-import models.comment.JavaSingleComment;
+import models.comment.ADocumentComment;
+import models.comment.AMultiComment;
+import models.comment.ASingleComment;
 import models.function.AFunction;
 
 public abstract class AFunctionWithComments extends AFunction {
 
 	protected final AFunction function;
-	protected ArrayList<JavaSingleComment> sComments;
-	protected ArrayList<JavaMultiComment> mComments;
-	protected ArrayList<JavadocComment> jComments;
+	protected ArrayList<ASingleComment> sComments;
+	protected ArrayList<AMultiComment> mComments;
+	protected ArrayList<ADocumentComment> dComments;
 
 	public AFunctionWithComments(AFunction function) {
 		super(function.getName(), function.getRange(), function.getContent());
 		this.function = function;
-		sComments = new ArrayList<JavaSingleComment>();
-		mComments = new ArrayList<JavaMultiComment>();
-		jComments = new ArrayList<JavadocComment>();
+		sComments = new ArrayList<ASingleComment>();
+		mComments = new ArrayList<AMultiComment>();
+		dComments = new ArrayList<ADocumentComment>();
 	}
 
 	public void addComment(AComment comment) {
-		if (comment instanceof JavaSingleComment) {
-			sComments.add((JavaSingleComment) comment);
-		} else if (comment instanceof JavaMultiComment) {
-			mComments.add((JavaMultiComment) comment);
+		if (comment instanceof ASingleComment) {
+			sComments.add((ASingleComment) comment);
+		} else if (comment instanceof AMultiComment) {
+			mComments.add((AMultiComment) comment);
 		} else {
-			jComments.add((JavadocComment) comment);
+			dComments.add((ADocumentComment) comment);
 		}
 	}
 
-	public ArrayList<JavaSingleComment> getSingleComments() {
+	public ArrayList<ASingleComment> getSingleComments() {
 		return sComments;
 	};
 
-	public ArrayList<JavaMultiComment> getMultiComments() {
+	public ArrayList<AMultiComment> getMultiComments() {
 		return mComments;
 	};
 
-	public ArrayList<JavadocComment> getJavadocComments() {
-		return jComments;
+	public ArrayList<ADocumentComment> getJavadocComments() {
+		return dComments;
 	};
 }

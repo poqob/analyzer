@@ -1,6 +1,8 @@
-package models.comment;
+package models.comment.java;
 
-public class JavaSingleComment extends AComment {
+import models.comment.ASingleComment;
+
+public class JavaSingleComment extends ASingleComment {
 
 	public JavaSingleComment(int[] range, String content) {
 		super(range, content);

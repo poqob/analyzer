@@ -1,6 +1,8 @@
-package models.comment;
+package models.comment.java;
 
-public class JavadocComment extends AComment {
+import models.comment.ADocumentComment;
+
+public class JavadocComment extends ADocumentComment {
 
 	public JavadocComment(int[] range, String content) {
 		super(range, content);
