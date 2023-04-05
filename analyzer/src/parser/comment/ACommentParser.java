@@ -1,18 +1,22 @@
 package parser.comment;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.classes.AClass;
+import models.comment.AComment;
+
+//Detects, instantiates, and returns comments on a class object.
 public abstract class ACommentParser {
+	protected final AClass clss;
+	protected ArrayList<AComment> comments;
 
+	public ACommentParser(AClass clss) {
+		this.clss = clss;
+		comments = new ArrayList<AComment>();
+	}
+
+	public List<AComment> parse() {
+		return comments;
+	}
 }
-
-/*
- * sýnýf aralýðýndaki fonksiyonlar tespit edilip kaydedilsin
- * 
- * fonksiyon sýnýrlarý içindeki yorumlar tespit edilsin ve fonksiyonlarla
- * beraber tutulsun.
- * 
- * fonksiyonlar arasý yorumlar tespit edilsin ve ilgili fonksiyonla beraber
- * tutulsun
- * 
- * belki þart kontrolü de yapýlabilir. bulunan fonksiyon yorum aralýðý içinde mi
- * deðil mi?
- */
