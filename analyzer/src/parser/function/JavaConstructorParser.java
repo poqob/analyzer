@@ -39,7 +39,7 @@ public class JavaConstructorParser extends AFunctionParser {
 			cb = new CurlyBraces(clss.toString().substring(_headIndex));
 
 			// range
-			range = new int[] { _headIndex, cb.getBody().length() + _headIndex };
+			range = new int[] { _headIndex, cb.getBody().length() + _headIndex + _head.length() };
 
 			// Debug.Writer(_getHead() + cb.getBody() + "\n");
 			// attemt to funList as new created AFunction
