@@ -1,4 +1,4 @@
-package parser.classes;
+package parser.classes.java;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import models.classes.AClass;
-import models.classes.JavaClass;
+import models.classes.java.JavaClass;
+import parser.classes.AClassParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 import parser.util.java.CurlyBraces;

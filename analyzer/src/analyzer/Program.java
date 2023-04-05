@@ -3,18 +3,32 @@ package analyzer;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import models.classes.JavaClass;
+import models.classes.java.JavaClass;
 import models.comment.AComment;
 import models.function.AFunction;
-import parser.classes.JavaClassParser;
-import parser.comment.JavaCommentParser;
-import parser.function.JavaConstructorParser;
-import parser.function.JavaMethodParser;
+import models.functionAndComments.AFunctionWithComments;
+import parser.classes.java.JavaClassParser;
+import parser.comment.java.JavaCommentParser;
+import parser.function.java.JavaConstructorParser;
+import parser.function.java.JavaMethodParser;
 import util.Debug;
 import util.Todo;
 
-@Todo("todo")
-
+@Todo("i'm gonna sum all operations sub of JavaParser class. End of the day usage scenario will be like this:")
+//the usage scenario.
+/*
+ * JavaClass clss=new JavaClass(path~file);
+ * 
+ * clss has itself parser that is JavaParser includes all parse methods int it.
+ * 
+ * parsing will take place immediately after the constructor function is
+ * executed.
+ * 
+ * then we write another class which responsible printing to screen and writing
+ * to files.
+ * 
+ * 
+ */
 public class Program {
 
 	public static void main(String[] args) throws IOException {
@@ -28,7 +42,8 @@ public class Program {
 		// or method),
 		// it's location from head to end of the function in its class as int array.
 		ArrayList<AFunction> funcs = new ArrayList<AFunction>();
-		ArrayList<AComment> comms = new ArrayList<AComment>();
+		ArrayList<AComment> comms;
+		ArrayList<AFunctionWithComments> funcomms = new ArrayList<AFunctionWithComments>();
 
 		String path = "C:\\Users\\mmerm\\git\\repository\\analyzer\\src\\test\\test.txt";
 
@@ -52,27 +67,20 @@ public class Program {
 		// attempting functions
 		clss.setFunctions(funcs);
 
-		// JavaCommentParser(clss)
-
-		// TODO: knk þimdi yorum tespiti yapacaðýz tasarýma bir bakacaðým olmadý
-		// deðiþikliðe gidebilirlm.
-
-		// ACommentParser üzerinden gidip plana sadýk kalacaðýz.
-		//
-
-		// atempting comments
+		JavaCommentParser jcp = new JavaCommentParser(clss);
+		comms = jcp.parse();
 		clss.setComments(comms);
 
-		// clss.getFunComms(); funcomlarý döndürecek
+		// comment dedect and classifice test ok.
+		// int[] virt = jcp.parse().get(4).getRange();
+		// String ttt = clss.toString().substring(virt[0], virt[1]);
+		// Debug.Writer(ttt);
 
-		JavaCommentParser jcp = new JavaCommentParser(clss);
-		jcp.parse();
-		/*
-		 * comment dedect and classifice test ok.
-		 * 
-		 * int[] virt = jcp.parse().get(4).getRange(); String ttt =
-		 * clss.toString().substring(virt[0], virt[1]); Debug.Writer(ttt);
-		 */
+		// Debug.Writer(jcp.parse().get(4).getContent());
+
+		// clss.getComments().forEach(c -> Debug.Writer(c.getContent() + "\n"));
+
+		clss.getFunComs().forEach(fc -> fc.getSingleComments().forEach(fsc -> Debug.Writer(fsc.getContent() + "\n")));
 
 	}
 

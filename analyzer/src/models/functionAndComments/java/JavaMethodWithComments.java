@@ -1,9 +1,11 @@
-package models.functionAndComments;
+package models.functionAndComments.java;
 
 import models.function.AFunction;
+import models.functionAndComments.AFunctionWithComments;
 
-public class MethodWithComments extends AFunctionWithComments {
-	public MethodWithComments(AFunction function) {
+public class JavaMethodWithComments extends AFunctionWithComments {
+
+	public JavaMethodWithComments(AFunction function) {
 		super(function);
 	}
 }

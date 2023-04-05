@@ -1,5 +1,6 @@
-package parser;
+package parser.java;
 
+import parser.AParser;
 import parser.classes.AClassParser;
 import parser.comment.ACommentParser;
 import parser.function.AFunctionParser;

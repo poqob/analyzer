@@ -1,4 +1,4 @@
-package parser.function;
+package parser.function.java;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 
 import models.classes.AClass;
 import models.function.AFunction;
-import models.function.Constructor;
+import models.function.java.JavaConstructor;
+import parser.function.AFunctionParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 import parser.util.java.CurlyBraces;
@@ -43,7 +44,7 @@ public class JavaConstructorParser extends AFunctionParser {
 
 			// Debug.Writer(_getHead() + cb.getBody() + "\n");
 			// attemt to funList as new created AFunction
-			super.funList.add(new Constructor(_getName(), range, _getHead() + cb.getBody()));
+			super.funList.add(new JavaConstructor(_getName(), range, _getHead() + cb.getBody()));
 
 		}
 	}

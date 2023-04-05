@@ -1,8 +1,10 @@
-package models.function;
+package models.function.java;
 
-public class Constructor extends AFunction {
+import models.function.AFunction;
 
-	public Constructor(String name, int[] range, String content) {
+public class JavaConstructor extends AFunction {
+
+	public JavaConstructor(String name, int[] range, String content) {
 		super(name, range, content);
 		super.setType("CONSTRUCTOR");
 	}

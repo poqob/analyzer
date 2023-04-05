@@ -1,12 +1,13 @@
-package parser.function;
+package parser.function.java;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import models.classes.JavaClass;
+import models.classes.java.JavaClass;
 import models.function.AFunction;
-import models.function.Method;
+import models.function.java.JavaMethod;
+import parser.function.AFunctionParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 import parser.util.java.CurlyBraces;
@@ -48,7 +49,7 @@ public class JavaMethodParser extends AFunctionParser {
 
 			// Debug.Writer(_getName() + "\n");
 			// attemt to funList as new created AFunction
-			super.funList.add(new Method(_getName(), range, _getHead() + cb.getBody()));
+			super.funList.add(new JavaMethod(_getName(), range, _getHead() + cb.getBody()));
 
 		}
 	}

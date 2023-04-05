@@ -1,7 +1,9 @@
-package models.function;
+package models.function.java;
 
-public class Method extends AFunction {
-	public Method(String name, int[] range, String content) {
+import models.function.AFunction;
+
+public class JavaMethod extends AFunction {
+	public JavaMethod(String name, int[] range, String content) {
 		super(name, range, content);
 		super.setType("METHOD");
 	}
