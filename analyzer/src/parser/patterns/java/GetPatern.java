@@ -14,7 +14,7 @@ public class GetPatern {
 		case javadoc:
 			return Pattern.compile("/\\*\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/");
 		case method:
-			return Pattern.compile("(public|private|protected)?\\s+static?\\s+\\w+\\s+(\\w+)\\s*\\([^\\)]*\\)\\s*\\{");
+			return Pattern.compile("[A-Za-z]+.*[A-Za-z]+.*[A-Za-z]+\\(\\).*\\{", Pattern.CASE_INSENSITIVE);
 		case constructor:
 			return Pattern.compile("(public|protected|private)\\s+" + className + "\\s*\\(.*?\\)\\s*\\{");
 		case classes:
@@ -27,3 +27,9 @@ public class GetPatern {
 }
 //method
 //Pattern.compile("(public|private|protected)?\\s+static?\\s+\\w+\\s+(\\w+)\\s*\\([^\\)]*\\)\\s*\\{");
+
+//method without static
+// (public|private|protected)?\s+\w+\s+(\w+)\s*\([^)]*\)\s*{
+
+//method new
+//  Pattern.compile("[A-Za-z]+.*[A-Za-z]+.*[A-Za-z]+\\(\\).*\\{", Pattern.CASE_INSENSITIVE);
