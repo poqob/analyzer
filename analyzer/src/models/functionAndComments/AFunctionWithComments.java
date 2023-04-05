@@ -4,40 +4,40 @@ import java.util.ArrayList;
 
 import models.comment.AComment;
 import models.comment.JavadocComment;
-import models.comment.MultiComment;
-import models.comment.SingleComment;
+import models.comment.JavaMultiComment;
+import models.comment.JavaSingleComment;
 import models.function.AFunction;
 
 public abstract class AFunctionWithComments extends AFunction {
 
 	protected final AFunction function;
-	protected ArrayList<SingleComment> sComments;
-	protected ArrayList<MultiComment> mComments;
+	protected ArrayList<JavaSingleComment> sComments;
+	protected ArrayList<JavaMultiComment> mComments;
 	protected ArrayList<JavadocComment> jComments;
 
 	public AFunctionWithComments(AFunction function) {
 		super(function.getName(), function.getRange(), function.getContent());
 		this.function = function;
-		sComments = new ArrayList<SingleComment>();
-		mComments = new ArrayList<MultiComment>();
+		sComments = new ArrayList<JavaSingleComment>();
+		mComments = new ArrayList<JavaMultiComment>();
 		jComments = new ArrayList<JavadocComment>();
 	}
 
 	public void addComment(AComment comment) {
-		if (comment instanceof SingleComment) {
-			sComments.add((SingleComment) comment);
-		} else if (comment instanceof MultiComment) {
-			mComments.add((MultiComment) comment);
+		if (comment instanceof JavaSingleComment) {
+			sComments.add((JavaSingleComment) comment);
+		} else if (comment instanceof JavaMultiComment) {
+			mComments.add((JavaMultiComment) comment);
 		} else {
 			jComments.add((JavadocComment) comment);
 		}
 	}
 
-	public ArrayList<SingleComment> getSingleComments() {
+	public ArrayList<JavaSingleComment> getSingleComments() {
 		return sComments;
 	};
 
-	public ArrayList<MultiComment> getMultiComments() {
+	public ArrayList<JavaMultiComment> getMultiComments() {
 		return mComments;
 	};
 

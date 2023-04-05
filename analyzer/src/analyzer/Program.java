@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import models.classes.JavaClass;
+import models.comment.AComment;
 import models.function.AFunction;
 import parser.classes.JavaClassParser;
+import parser.comment.JavaCommentParser;
 import parser.function.JavaConstructorParser;
 import parser.function.JavaMethodParser;
 import util.Debug;
@@ -26,6 +28,7 @@ public class Program {
 		// or method),
 		// it's location from head to end of the function in its class as int array.
 		ArrayList<AFunction> funcs = new ArrayList<AFunction>();
+		ArrayList<AComment> comms = new ArrayList<AComment>();
 
 		String path = "C:\\Users\\mmerm\\git\\repository\\analyzer\\src\\test\\test.txt";
 
@@ -46,8 +49,30 @@ public class Program {
 			funcs.add(m);
 		});
 
+		// attempting functions
+		clss.setFunctions(funcs);
+
+		// JavaCommentParser(clss)
+
 		// TODO: knk þimdi yorum tespiti yapacaðýz tasarýma bir bakacaðým olmadý
 		// deðiþikliðe gidebilirlm.
+
+		// ACommentParser üzerinden gidip plana sadýk kalacaðýz.
+		//
+
+		// atempting comments
+		clss.setComments(comms);
+
+		// clss.getFunComms(); funcomlarý döndürecek
+
+		JavaCommentParser jcp = new JavaCommentParser(clss);
+		jcp.parse();
+		/*
+		 * comment dedect and classifice test ok.
+		 * 
+		 * int[] virt = jcp.parse().get(4).getRange(); String ttt =
+		 * clss.toString().substring(virt[0], virt[1]); Debug.Writer(ttt);
+		 */
 
 	}
 
