@@ -3,18 +3,16 @@ package models.function;
 public abstract class AFunction {
 	protected final String name;
 	protected final String content;
-	protected final int startIndex;
-	protected final int finalIndex;
+	protected final int[] range;
 
-	public AFunction(String name, int startIndex, int finalIndex, String content) {
+	public AFunction(String name, int[] range, String content) {
 		this.name = name;
-		this.startIndex = startIndex;
-		this.finalIndex = finalIndex;
+		this.range = range;
 		this.content = content;
 	}
 
 	public int[] getRange() {
-		return new int[] { startIndex, finalIndex };
+		return range;
 	}
 
 	public String getContent() {
