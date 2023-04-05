@@ -10,9 +10,11 @@ public abstract class AClass {
 	protected final String name;
 	protected final String text;
 
-	private ArrayList<AFunction> functions;
-	private ArrayList<AComment> comments;
-	private ArrayList<AFunctionWithComments> funcoms;
+	protected ArrayList<AFunction> functions;
+	protected ArrayList<AComment> comments;
+	protected ArrayList<AFunctionWithComments> funcomms;
+
+	protected abstract void pairFunComms();
 
 	public AClass(String name, String text) {
 		this.name = name;
@@ -36,7 +38,10 @@ public abstract class AClass {
 	}
 
 	public ArrayList<AFunctionWithComments> getFunComs() {
-		return funcoms;// null
+
+		if (funcomms == null)
+			pairFunComms();
+		return this.funcomms;// null
 	}
 
 	public String getName() {
