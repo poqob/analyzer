@@ -20,6 +20,10 @@ public abstract class AClass {
 		return name.trim();
 	};
 
+	public String getType() {
+		return "CLASS";
+	}
+
 	public String toString() {
 		return text;
 	}
