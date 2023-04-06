@@ -2,7 +2,6 @@ package test;
 
 import models.classes.java.JavaClass;
 import parser.java.JavaParser;
-import util.Debug;
 import writer.javaWriter.JavaWriter;
 
 public class Test {
@@ -17,8 +16,7 @@ public class Test {
 
 		writer.writeToConsole();
 		writer.writeToFile();
-		Debug.Writer(clss.getStatics());
-		;
+		// Debug.Writer(clss.getStatics());
 
 	}
 }
