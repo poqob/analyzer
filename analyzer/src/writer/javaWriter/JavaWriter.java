@@ -1,4 +1,4 @@
-package analyzer.writer.java;
+package writer.javaWriter;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,11 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import analyzer.writer.AWriter;
 import models.classes.java.JavaClass;
 import models.function.java.JavaConstructor;
 import models.functionAndComments.AFunctionWithComments;
 import util.Todo;
+import writer.AWriter;
 
 public class JavaWriter extends AWriter {
 
@@ -56,6 +56,7 @@ public class JavaWriter extends AWriter {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void _write(AFunctionWithComments fc) {
 		String _res;
 		try {

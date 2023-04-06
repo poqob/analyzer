@@ -1,4 +1,4 @@
-package analyzer.writer;
+package writer;
 
 import models.classes.AClass;
 

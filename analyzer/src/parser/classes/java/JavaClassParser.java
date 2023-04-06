@@ -17,7 +17,6 @@ import util.Todo;
 public class JavaClassParser extends AClassParser {
 	// fields
 	private JavaClass clss;
-	private final String _path;
 	private String _name;
 	private static String __name;
 	private final String _pure;
@@ -25,7 +24,7 @@ public class JavaClassParser extends AClassParser {
 
 	@Todo("accepts only absolut path i have to fix this ")
 	public JavaClassParser(String path) {
-		this._path = path;
+
 		this._name = _getName(path);
 		_pure = find(path).toString();
 
@@ -70,6 +69,7 @@ public class JavaClassParser extends AClassParser {
 					lineCount--;
 
 			}
+			br0.close();
 		} catch (
 
 		IOException e) {
