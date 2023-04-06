@@ -23,7 +23,7 @@ asdsadfs
 	public class Test {
 	
 	
-// ornek1 
+
 
 // ornek2 
 
@@ -55,12 +55,14 @@ asdsadfs
 	
 	
 	public static Path currPath() {
+	
 		Path currentDir = Paths.get("");
 		return currentDir;
 	}
 	
 
 	private String _getHead() {
+	// ornek1 
 		return _head.substring(0, _head.length() - 1);
 	}
 	

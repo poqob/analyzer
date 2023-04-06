@@ -34,7 +34,6 @@ public class JavaParser extends AParser {
 
 		// run getFunComms() inorder to create mixed method comment structure for
 		// further process.
-
 		super.clss.getFunComs();
 	}
 

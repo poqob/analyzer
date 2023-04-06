@@ -37,8 +37,7 @@ public class JavaClass extends AClass {
 			else
 				super.funcomms.add(new JavaMethodWithComments(f));
 
-			// control is there any comment here
-			// varsa oluþturulan JavaMethodWithComments nesnesine eklensin
+			// controling is there any comment in _start,_stop bounds.
 			for (AComment c : super.comments) {
 				// currently read comments range in class as character location.
 				_cstart = c.getRange()[0];
