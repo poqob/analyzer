@@ -16,9 +16,10 @@ public abstract class AParser {
 	protected ACommentParser commentParser;
 	protected AClassParser clssParser;
 	protected AClass clss;
+	protected String path;
 
 	public AParser(String path) {
 		funcs = new ArrayList<AFunction>();
-
+		this.path = path;
 	};
 }

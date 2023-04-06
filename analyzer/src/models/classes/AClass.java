@@ -13,6 +13,7 @@ public abstract class AClass {
 	protected ArrayList<AFunction> functions;
 	protected ArrayList<AComment> comments;
 	protected ArrayList<AFunctionWithComments> funcomms;
+	private String statics = "";
 
 	protected abstract void pairFunComms();
 
@@ -50,6 +51,17 @@ public abstract class AClass {
 
 	public String getType() {
 		return "CLASS";
+	}
+
+	public String getStatics() {
+		statics += (getType() + " " + getName() + " 0," + toString().length() + "\n");
+
+		functions.forEach(f -> {
+			statics += ((f.getType().concat(" ") + f.getName() + " " + f.getRange()[0] + "," + f.getRange()[1] + "\n"));
+		});
+
+		statics += "COMMENTS " + comments.size() + "\n";
+		return statics;
 	}
 
 	public String toString() {
