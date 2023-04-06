@@ -3,7 +3,7 @@ package models.function;
 public abstract class AFunction {
 	protected final String name;
 	protected final String content;
-	protected String functionType = "FUNCTION"; // not return type
+	protected String functionType = "FUNCTION";
 	protected final int[] range;
 
 	public AFunction(String name, int[] range, String content) {
@@ -24,7 +24,7 @@ public abstract class AFunction {
 		return range;
 	}
 
-	public String getContent() {
+	public String toString() {
 		return content;
 	};
 

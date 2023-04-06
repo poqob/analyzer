@@ -16,7 +16,7 @@ public abstract class AFunctionWithComments extends AFunction {
 	protected ArrayList<ADocumentComment> dComments;
 
 	public AFunctionWithComments(AFunction function) {
-		super(function.getName(), function.getRange(), function.getContent());
+		super(function.getName(), function.getRange(), function.toString());
 		this.function = function;
 		sComments = new ArrayList<ASingleComment>();
 		mComments = new ArrayList<AMultiComment>();

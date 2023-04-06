@@ -12,7 +12,6 @@ import parser.classes.AClassParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 import parser.util.java.CurlyBraces;
-import util.Todo;
 
 public class JavaClassParser extends AClassParser {
 	// fields
@@ -22,9 +21,7 @@ public class JavaClassParser extends AClassParser {
 	private final String _pure;
 	private static String _head;
 
-	@Todo("accepts only absolut path i have to fix this ")
 	public JavaClassParser(String path) {
-
 		this._name = _getName(path);
 		_pure = find(path).toString();
 
