@@ -3,7 +3,7 @@
 * @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
 * @since 05.04.23
 * @ASingleComment
-* ASingleComment is a abstract model for document style comments which derived from AComment. 
+* ASingleComment is a abstract model for single-line style comments which derived from AComment. 
 * it works exactly same with AComment. Difference is it has type.
 */
 
