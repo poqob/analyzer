@@ -11,6 +11,8 @@ public abstract class AWriter {
 
 	protected abstract void cleanFiles();
 
+	public abstract void writeToFile(String path);
+
 	public abstract void writeToFile();
 
 	public abstract void writeToConsole();

@@ -16,9 +16,9 @@ import writer.AWriter;
 public class JavaWriter extends AWriter {
 
 	private String expectedOutput = "";
-	private File sFile = new File("other\\single_line_comments.txt");
-	private File mFile = new File("other\\multi_line_comments.txt");
-	private File jFile = new File("other\\javadoc_comments.txt");
+	private File sFile = new File("single_line_comments.txt");
+	private File mFile = new File("multi_line_comments.txt");
+	private File jFile = new File("javadoc_comments.txt");
 	private String temp = "";
 	private final String divider = "\n--------------------------------------------------\n\n";
 	private FileOutputStream outputStream;
@@ -31,7 +31,15 @@ public class JavaWriter extends AWriter {
 	@Todo("default path-given path applications")
 
 	@Override
+	public void writeToFile(String path) {
+		createFiles(path);
+		cleanFiles();
+		super.clss.getFunComs().forEach(fc -> _write(fc));
+	}
+
+	@Override
 	public void writeToFile() {
+		createFiles();
 		cleanFiles();
 		super.clss.getFunComs().forEach(fc -> _write(fc));
 	}
@@ -54,6 +62,18 @@ public class JavaWriter extends AWriter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void createFiles(String path) {
+		sFile = new File(path + "single_line_comments.txt");
+		mFile = new File(path + "multi_line_comments.txt");
+		jFile = new File(path + "javadoc_comments.txt");
+	}
+
+	private void createFiles() {
+		sFile = new File("single_line_comments.txt");
+		mFile = new File("multi_line_comments.txt");
+		jFile = new File("javadoc_comments.txt");
 	}
 
 	@SuppressWarnings("unused")
