@@ -1,8 +1,8 @@
 package test;
 
+import analyzer.writer.java.JavaWriter;
 import models.classes.java.JavaClass;
 import parser.java.JavaParser;
-import util.Debug;
 
 public class Test {
 
@@ -11,7 +11,9 @@ public class Test {
 		String path = "C:\\Users\\mmerm\\git\\repository\\analyzer\\src\\test\\test.txt";
 		JavaParser parser = new JavaParser(path);
 		JavaClass clss = parser.parse();
-		Debug.Writer(clss.getStatics());
+		JavaWriter writer = new JavaWriter(clss);
+
+		writer.writeToConsole();
 
 	}
 }
