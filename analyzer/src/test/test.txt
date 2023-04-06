@@ -1,25 +1,5 @@
 
 
-
-// ornek1 
-
-// ornek2 
-
-/* ornek3 */
-
-
-/*
-asdasdsd 
-asdsadfs
-*/
-
-
-/**
-*
-*javadoc
-*
-*/
-
 	public class Test {
 	
 	

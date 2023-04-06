@@ -3,6 +3,7 @@ package test;
 import analyzer.writer.java.JavaWriter;
 import models.classes.java.JavaClass;
 import parser.java.JavaParser;
+import util.Debug;
 
 public class Test {
 
@@ -14,6 +15,9 @@ public class Test {
 		JavaWriter writer = new JavaWriter(clss);
 
 		writer.writeToConsole();
+		writer.writeToFile();
+		Debug.Writer(clss.getStatics());
+		;
 
 	}
 }
