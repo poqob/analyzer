@@ -12,7 +12,7 @@ import models.functionAndComments.java.JavaMethodWithComments;
 public class JavaClass extends AClass {
 	// constructor
 	public JavaClass(String name, String text) {
-		super(name, text);
+		super(name, text, "JAVA");
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import models.functionAndComments.AFunctionWithComments;
 public abstract class AClass {
 	protected final String name;
 	protected final String text;
+	protected final String lang;
 
 	protected ArrayList<AFunction> functions;
 	protected ArrayList<AComment> comments;
@@ -17,9 +18,10 @@ public abstract class AClass {
 
 	protected abstract void pairFunComms();
 
-	public AClass(String name, String text) {
+	public AClass(String name, String text, String lang) {
 		this.name = name;
 		this.text = text;
+		this.lang = lang;
 	};
 
 	public void setFunctions(ArrayList<AFunction> functions) {
@@ -42,7 +44,7 @@ public abstract class AClass {
 
 		if (funcomms == null)
 			pairFunComms();
-		return this.funcomms;// null
+		return this.funcomms;
 	}
 
 	public String getName() {
@@ -53,8 +55,13 @@ public abstract class AClass {
 		return "CLASS";
 	}
 
+	public String getLanguage() {
+		return lang;
+	}
+
 	public String getStatics() {
-		statics += (getType() + " " + getName() + " 0," + toString().length() + "\n");
+		statics += (getLanguage().concat("-LANGUAGE\n") + getType() + " " + getName() + " 0," + toString().length()
+				+ "\n");
 
 		functions.forEach(f -> {
 			statics += ((f.getType().concat(" ") + f.getName() + " " + f.getRange()[0] + "," + f.getRange()[1] + "\n"));
