@@ -112,7 +112,7 @@ public class JavaClassParser extends AClassParser {
 
 	// takes input file pure text and turns into AClass object
 	@Override
-	public AClass parse() {
+	public AClass parseClass() {
 		CurlyBraces brc = new CurlyBraces(_pure);
 
 		String struct = getHead() + brc.getBody();

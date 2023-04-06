@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import models.classes.AClass;
+import models.classes.java.JavaClass;
 import models.function.AFunction;
 import models.function.java.JavaConstructor;
 import parser.function.AFunctionParser;
@@ -16,7 +16,7 @@ public class JavaConstructorParser extends AFunctionParser {
 
 	private String _head;
 
-	public JavaConstructorParser(AClass clss) {
+	public JavaConstructorParser(JavaClass clss) {
 		super(clss);
 		super.funList = new ArrayList<AFunction>();
 	}
