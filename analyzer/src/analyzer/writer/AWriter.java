@@ -9,6 +9,8 @@ public abstract class AWriter {
 		this.clss = clss;
 	}
 
+	protected abstract void cleanFiles();
+
 	public abstract void writeToFile();
 
 	public abstract void writeToConsole();

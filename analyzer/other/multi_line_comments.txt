@@ -1,0 +1,8 @@
+CONSTRUCTOR: Test
+	MULTI-LINE-COMMENT: {39,51}
+		/* ornek3 */
+	MULTI-LINE-COMMENT: {54,78}
+		/* asdasdsd  asdsadfs */
+
+--------------------------------------------------
+
