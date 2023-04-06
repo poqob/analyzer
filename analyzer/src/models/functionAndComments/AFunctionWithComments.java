@@ -33,6 +33,10 @@ public abstract class AFunctionWithComments extends AFunction {
 		}
 	}
 
+	public AFunction getFunction() {
+		return this.function;
+	};
+
 	public ArrayList<ASingleComment> getSingleComments() {
 		return sComments;
 	};
