@@ -1,3 +1,15 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 05.04.23
+* @JavaClass
+*	
+* JavaClass derived from AClass, it was java-specified created.
+* it's pairFunComms() method defined here because method creates 
+* (new) JavaConstructor or JavaMethods. 
+* 
+*/
+
 package models.classes.java;
 
 import java.util.ArrayList;
@@ -15,6 +27,10 @@ public class JavaClass extends AClass {
 		super(name, text, "JAVA");
 	}
 
+	/*
+	 * pairs class's functions(method-constructor) and their comments under
+	 * JavaMethodWithComments~JavaConstructorWithComments
+	 */
 	@Override
 	protected void pairFunComms() {
 		super.funcomms = new ArrayList<AFunctionWithComments>();
@@ -47,6 +63,7 @@ public class JavaClass extends AClass {
 					super.funcomms.get(_count).addComment(c);
 				}
 			}
+			// make next functions start point previous's start.
 			_start = _stop;
 		}
 
