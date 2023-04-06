@@ -1,17 +1,24 @@
 package parser;
 
+import java.util.ArrayList;
+
+import models.classes.AClass;
+import models.function.AFunction;
 import parser.classes.AClassParser;
 import parser.comment.ACommentParser;
 import parser.function.AFunctionParser;
 
 public abstract class AParser {
-	protected final AFunctionParser function;
-	protected final ACommentParser comment;
-	protected final AClassParser clss;
+	protected ArrayList<AFunction> funcs;
 
-	public AParser(AFunctionParser func, ACommentParser comm, AClassParser clss) {
-		this.clss = clss;
-		this.function = func;
-		this.comment = comm;
+	protected AFunctionParser methodParser;
+	protected AFunctionParser constructorParser;
+	protected ACommentParser commentParser;
+	protected AClassParser clssParser;
+	protected AClass clss;
+
+	public AParser(String path) {
+		funcs = new ArrayList<AFunction>();
+
 	};
 }
