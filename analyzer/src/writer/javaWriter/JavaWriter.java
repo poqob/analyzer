@@ -8,35 +8,38 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import models.classes.java.JavaClass;
-import models.function.java.JavaConstructor;
 import models.functionAndComments.AFunctionWithComments;
-import util.Todo;
 import writer.AWriter;
 
 public class JavaWriter extends AWriter {
 
-	private String expectedOutput = "";
-	private File sFile = new File("single_line_comments.txt");
-	private File mFile = new File("multi_line_comments.txt");
-	private File jFile = new File("javadoc_comments.txt");
+	// comment output files (scope of homework)
+	private File sFile;
+	private File mFile;
+	private File jFile;
+
+	// string operation elements.
 	private String temp = "";
 	private final String divider = "\n--------------------------------------------------\n\n";
 	private FileOutputStream outputStream;
 	private BufferedWriter writer;
+	private String expectedOutput = "";
 
+	// constructor
 	public JavaWriter(JavaClass clss) {
 		super(clss);
 	}
 
-	@Todo("default path-given path applications")
-
+	// write files into given path via console argument
 	@Override
 	public void writeToFile(String path) {
+		// create files up to given output location.
 		createFiles(path);
 		cleanFiles();
 		super.clss.getFunComs().forEach(fc -> _write(fc));
 	}
 
+	// write files into execute location
 	@Override
 	public void writeToFile() {
 		createFiles();
@@ -64,18 +67,21 @@ public class JavaWriter extends AWriter {
 		}
 	}
 
+	// create files with output path
 	private void createFiles(String path) {
 		sFile = new File(path + "single_line_comments.txt");
 		mFile = new File(path + "multi_line_comments.txt");
 		jFile = new File(path + "javadoc_comments.txt");
 	}
 
+	// create files into execute folder.
 	private void createFiles() {
 		sFile = new File("single_line_comments.txt");
 		mFile = new File("multi_line_comments.txt");
 		jFile = new File("javadoc_comments.txt");
 	}
 
+	// writing to file process
 	@SuppressWarnings("unused")
 	private void _write(AFunctionWithComments fc) {
 		String _res;
@@ -130,35 +136,43 @@ public class JavaWriter extends AWriter {
 
 	}
 
-	private String _single(AFunctionWithComments fc) {
-		if (fc.getSingleComments().size() != 0) {
-			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
-			fc.getSingleComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
-					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent() + "\n");
-		} else
-			temp = "";
-		return temp;
-	};
+	// *****************************************************************************//
+	// Write to Console Section
+	// *****************************************************************************//
+	// The format of output.
+	// *****************************************************************************//
 
-	private String _multi(AFunctionWithComments fc) {
-		if (fc.getMultiComments().size() != 0) {
-			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
-			fc.getMultiComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
-					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent().replace('\n', ' ') + "\n");
-		} else
-			temp = "";
-		return temp;
-	};
+	/*----------------------------------------------------
+		Fonksiyon: foksiyon adý
+			Yorum: yorum(tek satýra sýðacak)
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------
+		Fonksiyon: foksiyon adý
+			Yorum: yorum
+			Yorum: yorum
+			Yorum: yorum
+	----------------------------------------------------*/
 
-	private String _javadoc(AFunctionWithComments fc) {
-		if (fc.getJavadocComments().size() != 0) {
-			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
-			fc.getJavadocComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
-					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent().replace('\n', ' ') + "\n");
-		} else
-			temp = "";
-		return temp;
-	};
+	// obtains related classes functions and comments together under funcom list and
+	// manages all of that.
+	// the block
+	/*----------------------------------------------------
+	Fonksiyon: foksiyon adý
+		Yorum: yorum(tek satýra sýðacak)
+		Yorum: yorum
+		Yorum: yorum
+	----------------------------------------------------*/
 
 	@Override
 	public void writeToConsole() {
@@ -169,20 +183,48 @@ public class JavaWriter extends AWriter {
 		System.out.print(expectedOutput);
 	}
 
+	// block creator according to function with comments object.
 	private String _functionBlock(AFunctionWithComments func) {
-		String _type;
-		if (func.getFunction() instanceof JavaConstructor)
-			_type = "CONSTRUCTOR";
-		else
-			_type = "METHOD";
-
 		String _result = "";
-		_result += "\t" + _type + ": " + func.getName() + "\n";
+		_result += "\t" + func.getType() + ": " + func.getName() + "\n";
 		_result += "\t\tnumber of single-line comments: " + func.getSingleComments().size() + "\n";
 		_result += "\t\tnumber of multi-line comments: " + func.getMultiComments().size() + "\n";
 		_result += "\t\tnumber of javadoc comments: " + func.getJavadocComments().size() + "\n";
 		_result += divider;
 		return _result;
 	}
+
+	// creates single line comment information line
+	private String _single(AFunctionWithComments fc) {
+		if (fc.getSingleComments().size() != 0) {
+			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
+			fc.getSingleComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
+					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent() + "\n");
+		} else
+			temp = "";
+		return temp;
+	};
+	
+	// creates multi line comment information line
+	private String _multi(AFunctionWithComments fc) {
+		if (fc.getMultiComments().size() != 0) {
+			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
+			fc.getMultiComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
+					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent().replace('\n', ' ') + "\n");
+		} else
+			temp = "";
+		return temp;
+	};
+
+	// creates javadocument comment information line
+	private String _javadoc(AFunctionWithComments fc) {
+		if (fc.getJavadocComments().size() != 0) {
+			temp = fc.getFunction().getType() + ": " + fc.getFunction().getName() + "\n";
+			fc.getJavadocComments().forEach(sc -> temp += "\t" + sc.getType() + ": {" + sc.getRange()[0] + ","
+					+ sc.getRange()[1] + "}\n\t\t" + sc.getContent().replace('\n', ' ') + "\n");
+		} else
+			temp = "";
+		return temp;
+	};
 
 }
