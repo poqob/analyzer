@@ -31,6 +31,7 @@ public class Debug {
 		funcomms.forEach(fc -> {
 			Writer(fc.getSingleComments().isEmpty() ? "" : fc.getName().concat("\n"));
 			fc.getSingleComments().forEach(sc -> Writer(sc.toString() + "\n"));
+			// fc.getJavadocComments().forEach(sc -> Writer(sc.toString() + "\n"));
 
 		});
 	}
