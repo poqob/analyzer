@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,8 +26,20 @@ import models.comment.java.JavadocComment;
 import parser.comment.ACommentParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
+import util.Todo;
 
 public class JavaCommentParser extends ACommentParser {
+
+	// it keeps only single-lined comments of the class to compare them if they are
+	// in other comments range.
+	ArrayList<JavaSingleComment> _singles = new ArrayList<JavaSingleComment>();
+
+	// some methods in class does remove procces from list that contains dedected
+	// comments. i wanted to use linked list instead array list inorder to increase
+	// performance. it is hard to remove data from array list, if you want to remove
+	// somewhere at middles after removing process whole list shifts one unit to
+	// fill the space which was created by removed object.
+	LinkedList<AComment> _localComments = new LinkedList<AComment>();
 
 	public JavaCommentParser(JavaClass clss) {
 		super(clss);
@@ -36,6 +49,8 @@ public class JavaCommentParser extends ACommentParser {
 		_single();
 		_multiComment();
 		_javadocComment();
+		_correctSingles();
+		super.comments = new ArrayList<AComment>(_localComments);
 	};
 
 	// line by line is neccessary to dedect single-line comments.
@@ -59,6 +74,12 @@ public class JavaCommentParser extends ACommentParser {
 	// dedects single-line comments according to JavaPatterns.
 	private void _singleComment(String line) {
 
+		// thanks to this variable we can only take first match of the line
+		// this provides me ability to prevent chance of dedect more than one single
+		// comment at the same line
+		// _lineSearched value turns true after first match.
+		boolean _lineSearched = false;
+
 		// parsing with regex.
 		JavaPatterns p = JavaPatterns.single;
 		Pattern pa = GetJavaPattern.getPatern(p);
@@ -69,14 +90,22 @@ public class JavaCommentParser extends ACommentParser {
 		// exprassion match
 		String match = "";
 
+		// temp comment
+		JavaSingleComment javacomment;
+
 		// if exprassion exists then this while creates new JavaSingleComment object and
 		// adds it to super classes AComment List. Remember JavaSingleComment is a sub
 		// class of ASingleComment that is sub class of AComment!
 
-		while (matcher.find()) {
+		if (matcher.find() && _lineSearched == false) {
+			_lineSearched = true;
 			match = matcher.group();
 			_startIndex = super.clss.toString().indexOf(match);
-			super.comments.add(new JavaSingleComment(new int[] { _startIndex, match.length() + _startIndex }, match));
+
+			// creating new java comment
+			javacomment = new JavaSingleComment(new int[] { _startIndex, match.length() + _startIndex }, match);
+			_singles.add(javacomment);
+			_localComments.add(javacomment);
 		}
 
 	}
@@ -99,7 +128,7 @@ public class JavaCommentParser extends ACommentParser {
 		while (matcher.find()) {
 			match = matcher.group();
 			_startIndex = super.clss.toString().indexOf(match);
-			super.comments.add(new JavaMultiComment(new int[] { _startIndex, match.length() + _startIndex }, match));
+			_localComments.add(new JavaMultiComment(new int[] { _startIndex, match.length() + _startIndex }, match));
 		}
 	}
 
@@ -122,8 +151,37 @@ public class JavaCommentParser extends ACommentParser {
 		while (matcher.find()) {
 			match = matcher.group();
 			_startIndex = super.clss.toString().indexOf(match);
-			super.comments.add(new JavadocComment(new int[] { _startIndex, match.length() + _startIndex }, match));
+			_localComments.add(new JavadocComment(new int[] { _startIndex, match.length() + _startIndex }, match));
 		}
+	}
+
+	int _counter = -1;
+
+	@Todo("controll if single range in any other comment range.")
+	private void _correctSingles() {
+		ArrayList<AComment> _temp = new ArrayList<AComment>();
+		_localComments.forEach(c -> _temp.add(c));
+
+		_temp.forEach(comm -> {
+			_counter++;
+			_containsAnySingle(comm, _counter);
+		});
+		_counter = -1;
+	}
+
+	private void _containsAnySingle(AComment comm, int index) {
+		_singles.forEach(single -> {
+			if (!single.equals(comm)) {
+				if (single.getRange()[0] >= comm.getRange()[0] && single.getRange()[1] <= comm.getRange()[1]) {
+					// if program reaches this line,
+					// that means: we have a single-lined function which // in range of another
+					// multi-line or special comment. lets remove this single // comment that
+					// already in another comment: :')
+					_localComments.remove(single);
+				}
+			}
+
+		});
 	}
 
 	// The only accesible method, calls all work and as result of that returns

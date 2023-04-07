@@ -24,11 +24,11 @@ public abstract class ACommentParser {
 	// constructor.
 	public ACommentParser(AClass clss) {
 		this.clss = clss;
-		comments = new ArrayList<AComment>();
 	}
 
 	// parse and return parsed comments as a list.
 	public ArrayList<AComment> parse() {
+		// do something
 		return comments;
 	}
 }

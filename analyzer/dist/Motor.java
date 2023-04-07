@@ -30,7 +30,7 @@ public class Motor {
 
     public void calistir() {
         /**
-         * calisiyor true yapılıyor // TESTTT
+         * calisiyor true yapılıyor // TEST THIS LINE IS NOT A JAVA SINGLE COMMENT :D
          */
         calisiyor = true;
     }
@@ -39,7 +39,7 @@ public class Motor {
      * Motorun durdurulması //
      */
     public void durdur() {
-        calisiyor = false; // asdasd
+        calisiyor = false;
     }
 
     public String getMotorNo() {
