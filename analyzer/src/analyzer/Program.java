@@ -10,9 +10,10 @@ import util.Todo;
 import writer.javaWriter.JavaWriter;
 
 @Todo("if a real function have commeted and located in a comment but classified as a function!!!!"
-
 		+ "controll comment in comment situation: a multi comment or document comment"
-		+ "may contain '\\', intrpreted as single line by java regex. ")
+		+ "may contain '\\', intrpreted as single line by java regex. "
+		+ "                                                           "
+		+ "			Situation: working on java comment parser         ")
 
 //java -jar test.jar test.java ..\\output\\
 //java -jar test.jar argument0 argument1=local folder path
@@ -39,8 +40,10 @@ public class Program {
 					Debug.Writer(clss.getStatics().concat("\n\n"));
 					Debug.Writer(clss.toString().concat("\n\n"));
 					Debug.Writer(clss.getFunComs());
-				} else
+				} else {
+					writer.writeToConsole();
 					writer.writeToFile(args[1]);
+				}
 			} else {
 				writer.writeToConsole();
 				writer.writeToFile();

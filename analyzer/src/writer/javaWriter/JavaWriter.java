@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 
 import models.classes.java.JavaClass;
 import models.functionAndComments.AFunctionWithComments;
+import util.Todo;
 import writer.AWriter;
 
 public class JavaWriter extends AWriter {
@@ -30,9 +31,11 @@ public class JavaWriter extends AWriter {
 		super(clss);
 	}
 
+	@Todo("controll is path exists if not zortingen.")
 	// write files into given path via console argument
 	@Override
 	public void writeToFile(String path) {
+
 		// create files up to given output location.
 		createFiles(path);
 		cleanFiles();
@@ -204,7 +207,7 @@ public class JavaWriter extends AWriter {
 			temp = "";
 		return temp;
 	};
-	
+
 	// creates multi line comment information line
 	private String _multi(AFunctionWithComments fc) {
 		if (fc.getMultiComments().size() != 0) {
