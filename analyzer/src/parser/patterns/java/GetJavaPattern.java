@@ -1,12 +1,24 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @GetJavaPattern enum
+* GetJavaPattern gives compiled pattern with propper regex exprasion.
+* 
+*/
+
 package parser.patterns.java;
 
 import java.util.regex.Pattern;
 
 public class GetJavaPattern {
+	// className field for constructor dedection and also provides helps method
+	// dedection. attempted after java class parsing.
 	public static String className;
 
-	public static Pattern getPatern(JavaPatterns patern) {
-		switch (patern) {
+	// returns propper pattern.
+	public static Pattern getPatern(JavaPatterns pattern) {
+		switch (pattern) {
 		case single:
 			return Pattern.compile("//.*$");
 		case multi:
