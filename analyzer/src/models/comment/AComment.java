@@ -38,4 +38,18 @@ public abstract class AComment {
 	public String toString() {
 		return content + "\n{" + range[0] + "," + range[1] + "}\n";
 	}
+
+	@Override
+	public int hashCode() {
+		String code = type.length() + range[0] + range[1] + content.length() + "";
+		return Integer.parseInt(code);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof AComment))
+			return false;
+		AComment other = (AComment) o;
+		return this.hashCode() == (other.hashCode());
+	}
 }
