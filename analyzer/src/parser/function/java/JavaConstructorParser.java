@@ -1,3 +1,13 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @JavaConstructorParser
+* JavaConstructorParser can parse all Java constructors with its body and returns class's 
+* all constructors as a AFunction List.
+* 
+*/
+
 package parser.function.java;
 
 import java.util.ArrayList;
@@ -14,17 +24,19 @@ import parser.util.java.CurlyBraces;
 
 public class JavaConstructorParser extends AFunctionParser {
 
+	// head of constructor from access modifier to first curly bracket.
 	private String _head;
 
+	// contructor requires a Java class object to run.
 	public JavaConstructorParser(JavaClass clss) {
 		super(clss);
 		super.funList = new ArrayList<AFunction>();
 	}
 
 	private void _find() {
-		// variables
-		Paterns p = Paterns.constructor;
+
 		// GetPatern.className = _getName();
+		Paterns p = Paterns.constructor;
 		Pattern pa = GetPatern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
 		CurlyBraces cb;
@@ -36,10 +48,10 @@ public class JavaConstructorParser extends AFunctionParser {
 			// attemt head
 			_head = matcher.group();
 			_headIndex = clss.toString().indexOf(_head);
-			// find body
+			// find function body -blocks-
 			cb = new CurlyBraces(clss.toString().substring(_headIndex));
 
-			// range
+			// function body (between brackets)range in class
 			range = new int[] { _headIndex, cb.getBody().length() + _headIndex + _head.length() };
 
 			// Debug.Writer(_getHead() + cb.getBody() + "\n");
@@ -59,6 +71,7 @@ public class JavaConstructorParser extends AFunctionParser {
 		return super.clss.getName();
 	}
 
+	// parse and return parsed AFunctions
 	@Override
 	public ArrayList<AFunction> parse() {
 		_find();

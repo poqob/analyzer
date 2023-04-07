@@ -1,3 +1,13 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @JavaMethodParser
+* JavaMethodParser can parse all Java methods with its body. parse() method Returns 
+* class's all methods as a AFunction List.
+* 
+*/
+
 package parser.function.java;
 
 import java.util.ArrayList;
@@ -11,13 +21,13 @@ import parser.function.AFunctionParser;
 import parser.patterns.java.GetPatern;
 import parser.patterns.java.Paterns;
 import parser.util.java.CurlyBraces;
-import util.Todo;
 
-@Todo("method parser only parses first method of class (non constructor)")
 public class JavaMethodParser extends AFunctionParser {
 
+	// head of method from access modifier to first curly bracket.
 	private String _head;
 
+	// constructor
 	public JavaMethodParser(JavaClass clss) {
 		super(clss);
 
@@ -54,7 +64,7 @@ public class JavaMethodParser extends AFunctionParser {
 		}
 	}
 
-	// returns constructor definition line
+	// returns method definition line
 	private String _getHead() {
 		return _head.substring(0, _head.length() - 1);
 	}
@@ -75,6 +85,7 @@ public class JavaMethodParser extends AFunctionParser {
 		return head.substring(_start, _stop).trim();
 	}
 
+	// parse and return parsed AFunctions
 	@Override
 	public ArrayList<AFunction> parse() {
 		_find();
