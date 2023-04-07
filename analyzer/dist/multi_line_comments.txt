@@ -1,0 +1,12 @@
+CONSTRUCTOR: Motor
+	MULTI-LINE-COMMENT: {214,237}
+		/* Başlangıçta false */
+
+--------------------------------------------------
+
+CONSTRUCTOR: Motor
+	MULTI-LINE-COMMENT: {402,479}
+		/*          * Varolan bir motor no ile oluşturuluyor.          *           */
+
+--------------------------------------------------
+
