@@ -1,3 +1,12 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @Debug
+* Debug class contains write (console) methods. i was lazy to write every time System.out......
+* 
+*/
+
 package util;
 
 public class Debug {
