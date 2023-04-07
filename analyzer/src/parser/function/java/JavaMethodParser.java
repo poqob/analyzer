@@ -47,6 +47,13 @@ public class JavaMethodParser extends AFunctionParser {
 		while (matcher.find()) {
 			// attemt head
 			this._head = matcher.group();
+
+			// addition controlls
+			if (_head.contains("while"))
+				continue;
+			if (_head.contains("if"))
+				continue;
+
 			_headIndex = clss.toString().indexOf(_head);
 
 			if (super.clss.getName().contains(_getName()))

@@ -11,6 +11,8 @@
 
 package parser.java;
 
+import java.io.IOException;
+
 import models.classes.java.JavaClass;
 import parser.AParser;
 import parser.classes.java.JavaClassParser;
@@ -20,7 +22,7 @@ import parser.function.java.JavaMethodParser;
 
 public class JavaParser extends AParser {
 
-	public JavaParser(String path) {
+	public JavaParser(String path) throws IOException {
 		super(path);
 		// parse class
 		super.clssParser = new JavaClassParser(path);

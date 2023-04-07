@@ -47,6 +47,12 @@ public class JavaConstructorParser extends AFunctionParser {
 		while (matcher.find()) {
 			// attemt head
 			_head = matcher.group();
+			// addition controlls
+			if (_head.contains("while"))
+				continue;
+			if (_head.contains("if"))
+				continue;
+
 			_headIndex = clss.toString().indexOf(_head);
 			// find function body -blocks-
 			cb = new JavaCurlyBraces(clss.toString().substring(_headIndex));
