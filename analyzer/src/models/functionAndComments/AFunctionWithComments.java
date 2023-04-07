@@ -1,3 +1,13 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 06.04.23
+* @AFunctionWithComments
+* AFunctionWithComments is a type function and type comment mixed class.
+* contains a function based process(method~constructor) type and its 
+* various typed comments.
+*/
+
 package models.functionAndComments;
 
 import java.util.ArrayList;
@@ -10,11 +20,13 @@ import models.function.AFunction;
 
 public abstract class AFunctionWithComments extends AFunction {
 
+	// fields
 	protected final AFunction function;
 	protected ArrayList<ASingleComment> sComments;
 	protected ArrayList<AMultiComment> mComments;
 	protected ArrayList<ADocumentComment> dComments;
 
+	// constructor
 	public AFunctionWithComments(AFunction function) {
 		super(function.getName(), function.getRange(), function.toString());
 		this.function = function;
@@ -23,6 +35,8 @@ public abstract class AFunctionWithComments extends AFunction {
 		dComments = new ArrayList<ADocumentComment>();
 	}
 
+	// This method adds a comment to the corresponding list, after checking the type
+	// of the comment parameter through instanceof operator
 	public void addComment(AComment comment) {
 		if (comment instanceof ASingleComment) {
 			sComments.add((ASingleComment) comment);
@@ -33,6 +47,7 @@ public abstract class AFunctionWithComments extends AFunction {
 		}
 	}
 
+	// getters
 	public AFunction getFunction() {
 		return this.function;
 	};
