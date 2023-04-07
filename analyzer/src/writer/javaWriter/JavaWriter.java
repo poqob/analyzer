@@ -42,7 +42,7 @@ public class JavaWriter extends AWriter {
 
 	// write files into execute location
 	@Override
-	public void writeToFile() {
+	public void writeToFile() throws IOException {
 		createFiles();
 		cleanFiles();
 		super.clss.getFunComs().forEach(fc -> _write(fc));
@@ -50,22 +50,19 @@ public class JavaWriter extends AWriter {
 
 	// cleans comment files content if they are exist.
 	@Override
-	protected void cleanFiles() {
+	protected void cleanFiles() throws IOException {
 		FileWriter _fwriter;
-		try {
-			_fwriter = new FileWriter(sFile);
-			_fwriter.write("");
-			_fwriter.close();
-			_fwriter = new FileWriter(mFile);
-			_fwriter.write("");
-			_fwriter.close();
-			_fwriter = new FileWriter(jFile);
-			_fwriter.write("");
-			_fwriter.close();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		_fwriter = new FileWriter(sFile);
+		_fwriter.write("");
+		_fwriter.close();
+		_fwriter = new FileWriter(mFile);
+		_fwriter.write("");
+		_fwriter.close();
+		_fwriter = new FileWriter(jFile);
+		_fwriter.write("");
+		_fwriter.close();
+
 	}
 
 	// create files with output path

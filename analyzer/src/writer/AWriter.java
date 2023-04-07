@@ -21,13 +21,13 @@ public abstract class AWriter {
 		this.clss = clss;
 	}
 
-	protected abstract void cleanFiles();
+	protected abstract void cleanFiles() throws IOException;
 
 	// write to file with given path via arguments
 	public abstract void writeToFile(String path) throws IOException;
 
 	// write to file execute location.
-	public abstract void writeToFile();
+	public abstract void writeToFile() throws IOException;
 
 	// prints all the content to console
 	public abstract void writeToConsole();
