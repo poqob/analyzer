@@ -12,6 +12,7 @@
 package parser.classes.java;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -95,27 +96,11 @@ public class JavaClassParser extends AClassParser {
 
 	// returns class name
 	private static String _getName(String _dir) {
-		StringBuilder _allClass = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(_dir))) {
-			String line;
 
-			// dedect which line is start of our scope
-			while ((line = br.readLine()) != null) {
-				_allClass.append(line);
-			}
-
-			br.close();
-
-		} catch (
-
-		IOException e) {
-			e.printStackTrace();
-		}
-
-		String head = _allClass.toString();
-		int _start = head.indexOf("class") + 6;
-		int _stop = head.indexOf("{");
-		__name = head.substring(_start, _stop).trim();
+		File file = new File(_dir);
+		String fileN = file.getName();
+		int dotIndex = fileN.lastIndexOf(".");
+		__name = fileN.substring(0, dotIndex);
 		return __name;
 	}
 
