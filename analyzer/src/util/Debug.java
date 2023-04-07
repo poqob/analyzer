@@ -28,10 +28,18 @@ public class Debug {
 	}
 
 	public static void Writer(ArrayList<AFunctionWithComments> funcomms) {
+
 		funcomms.forEach(fc -> {
-			Writer(fc.getSingleComments().isEmpty() ? "" : fc.getName().concat("\n"));
+			Writer(fc.getSingleComments().isEmpty() ? "" : "\n\t\tSINGLE " + fc.getName().concat("\n"));
 			fc.getSingleComments().forEach(sc -> Writer(sc.toString() + "\n"));
-			// fc.getJavadocComments().forEach(sc -> Writer(sc.toString() + "\n"));
+
+			Writer(fc.getMultiComments().isEmpty() ? "" : "\n\t\tMULTI " + fc.getName().concat("\n"));
+			fc.getMultiComments().forEach(sc -> Writer(sc.toString() + "\n"));
+
+			Writer(fc.getJavadocComments().isEmpty() ? "" : "\n\t\tDOCUMENT " + fc.getName().concat("\n"));
+			fc.getJavadocComments().forEach(sc -> Writer(sc.toString() + "\n"));
+
+			Writer("\n******************************************************\n");
 
 		});
 	}
