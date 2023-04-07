@@ -1,3 +1,14 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 06.04.23
+* @JavaParser
+* JavaParser is a AParser based java-specified class. it parses class
+* after constructor call. you can get parsed class by calling .parse()
+* method. 
+* 
+*/
+
 package parser.java;
 
 import models.classes.java.JavaClass;
@@ -37,6 +48,8 @@ public class JavaParser extends AParser {
 		super.clss.getFunComs();
 	}
 
+	// return parsed class
+	@Override
 	public JavaClass parse() {
 		return (JavaClass) clss;
 	}
