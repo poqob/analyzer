@@ -38,7 +38,6 @@ public class Program {
 		}
 		System.out.println("press any key to exit.\n");
 		scanner.nextLine();
-
 		scanner.close();
 	}
 

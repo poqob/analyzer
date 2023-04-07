@@ -1,3 +1,14 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 06.04.23
+* @JavaClassParser
+* JavaClassParser is a Java-based class-parser class. this class takes related file's 
+* path as parameter from constructor and firstly dedects classes name inorder to assign
+* constructors as constructor not method. both of them simular types. JavaClassParser
+* 
+*/
+
 package parser.classes.java;
 
 import java.io.BufferedReader;
@@ -27,10 +38,10 @@ public class JavaClassParser extends AClassParser {
 
 	}
 
-	// parse class block
+	// fnds related character sets like definition line of class.
 	private static StringBuilder find(String dir) {
 
-		// pattern
+		// requested java class patern (pattern)
 		Paterns p = Paterns.classes;
 
 		GetPatern.className = __name;
@@ -75,6 +86,7 @@ public class JavaClassParser extends AClassParser {
 
 		return sb;
 	}
+	// getters
 
 	// returns first line of clas definition without curly brace
 	private static String getHead() {
@@ -107,7 +119,7 @@ public class JavaClassParser extends AClassParser {
 		return __name;
 	}
 
-	// takes input file pure text and turns into AClass object
+	// takes input file, pure text then turns into AClass object
 	@Override
 	public AClass parseClass() {
 		CurlyBraces brc = new CurlyBraces(_pure);
