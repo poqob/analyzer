@@ -26,26 +26,26 @@ import models.comment.java.JavadocComment;
 import parser.comment.ACommentParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
-import util.Todo;
 
 public class JavaCommentParser extends ACommentParser {
 
 	// it keeps only single-lined comments of the class to compare them if they are
 	// in other comments range.
-	ArrayList<JavaSingleComment> _singles = new ArrayList<JavaSingleComment>();
+	private ArrayList<JavaSingleComment> _singles = new ArrayList<JavaSingleComment>();
 
 	// some methods in class does remove procces from list that contains dedected
 	// comments. i wanted to use linked list instead array list inorder to increase
 	// performance. it is hard to remove data from array list, if you want to remove
 	// somewhere at middles after removing process whole list shifts one unit to
 	// fill the space which was created by removed object.
-	LinkedList<AComment> _localComments = new LinkedList<AComment>();
+	private LinkedList<AComment> _localComments = new LinkedList<AComment>();
 
 	public JavaCommentParser(JavaClass clss) {
 		super(clss);
 	}
 
-	private void _find() {
+	// trigger method
+	private void _find() throws IOException {
 		_single();
 		_multiComment();
 		_javadocComment();
@@ -55,20 +55,16 @@ public class JavaCommentParser extends ACommentParser {
 
 	// line by line is neccessary to dedect single-line comments.
 	// multi-line and javadoc comments can dedected by whole JavaClass (as String)
-	private void _single() {
+	private void _single() throws IOException {
 		String str = super.clss.toString();
 		BufferedReader reader = new BufferedReader(new StringReader(str));
 		String line;
-		try {
-			while ((line = reader.readLine()) != null) {
-				// send lines to single line comment dedector.
-				_singleComment(line);
-			}
 
-		} catch (IOException e) {
-
-			e.printStackTrace();
+		while ((line = reader.readLine()) != null) {
+			// send lines to single line comment dedector.
+			_singleComment(line);
 		}
+
 	}
 
 	// dedects single-line comments according to JavaPatterns.
@@ -155,21 +151,20 @@ public class JavaCommentParser extends ACommentParser {
 		}
 	}
 
-	int _counter = -1;
-
-	@Todo("controll if single range in any other comment range.")
+	/*
+	 * _correctSingles() and _containsAnySingle() methods controlls if a single-line
+	 * comment is in another type comment's bounds-rannge-. if it is, the dedected
+	 * single comment will be removed from _localComment(LinkedList).
+	 */
 	private void _correctSingles() {
 		ArrayList<AComment> _temp = new ArrayList<AComment>();
 		_localComments.forEach(c -> _temp.add(c));
-
 		_temp.forEach(comm -> {
-			_counter++;
-			_containsAnySingle(comm, _counter);
+			_containsAnySingle(comm);
 		});
-		_counter = -1;
 	}
 
-	private void _containsAnySingle(AComment comm, int index) {
+	private void _containsAnySingle(AComment comm) {
 		_singles.forEach(single -> {
 			if (!single.equals(comm)) {
 				if (single.getRange()[0] >= comm.getRange()[0] && single.getRange()[1] <= comm.getRange()[1]) {
@@ -187,7 +182,7 @@ public class JavaCommentParser extends ACommentParser {
 	// The only accesible method, calls all work and as result of that returns
 	// AComment list.
 	@Override
-	public ArrayList<AComment> parse() {
+	public ArrayList<AComment> parse() throws IOException {
 		_find();
 		return super.comments;
 	}

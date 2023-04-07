@@ -11,6 +11,7 @@
 
 package parser.comment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import models.classes.AClass;
@@ -27,7 +28,7 @@ public abstract class ACommentParser {
 	}
 
 	// parse and return parsed comments as a list.
-	public ArrayList<AComment> parse() {
+	public ArrayList<AComment> parse() throws IOException {
 		// do something
 		return comments;
 	}
