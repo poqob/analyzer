@@ -9,7 +9,6 @@ import java.io.OutputStreamWriter;
 
 import models.classes.java.JavaClass;
 import models.functionAndComments.AFunctionWithComments;
-import util.Todo;
 import writer.AWriter;
 
 public class JavaWriter extends AWriter {
@@ -31,10 +30,9 @@ public class JavaWriter extends AWriter {
 		super(clss);
 	}
 
-	@Todo("controll is path exists if not zortingen.")
 	// write files into given path via console argument
 	@Override
-	public void writeToFile(String path) {
+	public void writeToFile(String path) throws IOException {
 
 		// create files up to given output location.
 		createFiles(path);
@@ -71,10 +69,24 @@ public class JavaWriter extends AWriter {
 	}
 
 	// create files with output path
-	private void createFiles(String path) {
+	private void createFiles(String path) throws IOException {
+
 		sFile = new File(path + "single_line_comments.txt");
 		mFile = new File(path + "multi_line_comments.txt");
 		jFile = new File(path + "javadoc_comments.txt");
+
+		// if given path not exist then create directories and output files.
+		if (!sFile.getParentFile().exists())
+			sFile.getParentFile().mkdirs();
+		if (!mFile.getParentFile().exists())
+			mFile.getParentFile().mkdirs();
+		if (!jFile.getParentFile().exists())
+			jFile.getParentFile().mkdirs();
+		/*
+		 * if (!sFile.exists()) sFile.createNewFile(); if (!mFile.exists())
+		 * mFile.createNewFile(); if (!jFile.exists()) jFile.createNewFile();
+		 */
+
 	}
 
 	// create files into execute folder.

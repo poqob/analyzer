@@ -9,6 +9,8 @@
 */
 package writer;
 
+import java.io.IOException;
+
 import models.classes.AClass;
 
 public abstract class AWriter {
@@ -22,7 +24,7 @@ public abstract class AWriter {
 	protected abstract void cleanFiles();
 
 	// write to file with given path via arguments
-	public abstract void writeToFile(String path);
+	public abstract void writeToFile(String path) throws IOException;
 
 	// write to file execute location.
 	public abstract void writeToFile();
