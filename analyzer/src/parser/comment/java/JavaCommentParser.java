@@ -1,3 +1,13 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @JavaCommentParser
+* JavaCommentParser is a child class of ACommentParser. 
+* JavaCommentParser requires JavaClass object to run. JavaCommentParser
+* parses various typed comments from JavaClass. 
+* 
+*/
 package parser.comment.java;
 
 import java.io.BufferedReader;
@@ -23,16 +33,13 @@ public class JavaCommentParser extends ACommentParser {
 	}
 
 	private void _find() {
-
-		// single comments
 		_single();
 		_multiComment();
 		_javadocComment();
-
 	};
 
-	// turn class into bufferedReader inorder to read line by line.
-	// line by line is neccessary to dedect single line comments.
+	// line by line is neccessary to dedect single-line comments.
+	// multi-line and javadoc comments can dedected by whole JavaClass (as String)
 	private void _single() {
 		String str = super.clss.toString();
 		BufferedReader reader = new BufferedReader(new StringReader(str));
@@ -49,15 +56,22 @@ public class JavaCommentParser extends ACommentParser {
 		}
 	}
 
-	// dedects single line comments
+	// dedects single-line comments according to JavaPatterns.
 	private void _singleComment(String line) {
 
+		// parsing with regex.
 		Paterns p = Paterns.single;
 		Pattern pa = GetPatern.getPatern(p);
 		Matcher matcher = pa.matcher(line);
 
+		// regex exprassion start location in JavaClass (character based location)
 		int _startIndex = 0;
+		// exprassion match
 		String match = "";
+
+		// if exprassion exists then this while creates new JavaSingleComment object and
+		// adds it to super classes AComment List. Remember JavaSingleComment is a sub
+		// class of ASingleComment that is sub class of AComment!
 
 		while (matcher.find()) {
 			match = matcher.group();
@@ -69,12 +83,19 @@ public class JavaCommentParser extends ACommentParser {
 
 	// dedects multi line java comments
 	private void _multiComment() {
+		// parsing with regex.
 		Paterns p = Paterns.multi;
 		Pattern pa = GetPatern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
+
+		// regex exprassion start location in JavaClass (character based location)
 		int _startIndex = 0;
 		String match = "";
 
+		// if exprassion exist creates new JavaMultiComment which is sub class of
+		// AMultiComment and also AComment. Then adds the object to its parent's
+		// AComment
+		// list.
 		while (matcher.find()) {
 			match = matcher.group();
 			_startIndex = super.clss.toString().indexOf(match);
@@ -84,12 +105,20 @@ public class JavaCommentParser extends ACommentParser {
 
 	// dedects javadoc comments
 	private void _javadocComment() {
+
+		// parsing with regex.
 		Paterns p = Paterns.javadoc;
 		Pattern pa = GetPatern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
+
+		// regex exprassion start location in JavaClass (character based location)
 		int _startIndex = 0;
 		String match = "";
 
+		// if exprassion exist creates new JavadocComment which is sub class of
+		// ADocumentComment and also AComment. Then adds the object to its parent's
+		// AComment
+		// list.
 		while (matcher.find()) {
 			match = matcher.group();
 			_startIndex = super.clss.toString().indexOf(match);
@@ -97,6 +126,8 @@ public class JavaCommentParser extends ACommentParser {
 		}
 	}
 
+	// The only accesible method, calls all work and as result of that returns
+	// AComment list.
 	@Override
 	public ArrayList<AComment> parse() {
 		_find();

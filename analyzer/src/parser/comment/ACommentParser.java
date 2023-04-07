@@ -1,3 +1,14 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 07.04.23
+* @ACommentParser
+* ACommentParser is a template class for all languages comment parser. it requires a class to run.
+* parse() was planned to be parses all type of comments from class and returns them in a primitive 
+* type comment list.
+* 
+*/
+
 package parser.comment;
 
 import java.util.ArrayList;
@@ -10,11 +21,13 @@ public abstract class ACommentParser {
 	protected final AClass clss;
 	protected ArrayList<AComment> comments;
 
+	// constructor.
 	public ACommentParser(AClass clss) {
 		this.clss = clss;
 		comments = new ArrayList<AComment>();
 	}
 
+	// parse and return parsed comments as a list.
 	public ArrayList<AComment> parse() {
 		return comments;
 	}
