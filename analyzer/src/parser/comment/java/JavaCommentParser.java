@@ -23,8 +23,8 @@ import models.comment.java.JavaMultiComment;
 import models.comment.java.JavaSingleComment;
 import models.comment.java.JavadocComment;
 import parser.comment.ACommentParser;
-import parser.patterns.java.GetPatern;
-import parser.patterns.java.Paterns;
+import parser.patterns.java.GetJavaPattern;
+import parser.patterns.java.JavaPatterns;
 
 public class JavaCommentParser extends ACommentParser {
 
@@ -60,8 +60,8 @@ public class JavaCommentParser extends ACommentParser {
 	private void _singleComment(String line) {
 
 		// parsing with regex.
-		Paterns p = Paterns.single;
-		Pattern pa = GetPatern.getPatern(p);
+		JavaPatterns p = JavaPatterns.single;
+		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(line);
 
 		// regex exprassion start location in JavaClass (character based location)
@@ -84,8 +84,8 @@ public class JavaCommentParser extends ACommentParser {
 	// dedects multi line java comments
 	private void _multiComment() {
 		// parsing with regex.
-		Paterns p = Paterns.multi;
-		Pattern pa = GetPatern.getPatern(p);
+		JavaPatterns p = JavaPatterns.multi;
+		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
 
 		// regex exprassion start location in JavaClass (character based location)
@@ -107,8 +107,8 @@ public class JavaCommentParser extends ACommentParser {
 	private void _javadocComment() {
 
 		// parsing with regex.
-		Paterns p = Paterns.javadoc;
-		Pattern pa = GetPatern.getPatern(p);
+		JavaPatterns p = JavaPatterns.javadoc;
+		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
 
 		// regex exprassion start location in JavaClass (character based location)

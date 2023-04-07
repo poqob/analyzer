@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 import models.classes.AClass;
 import models.classes.java.JavaClass;
 import parser.classes.AClassParser;
-import parser.patterns.java.GetPatern;
-import parser.patterns.java.Paterns;
+import parser.patterns.java.GetJavaPattern;
+import parser.patterns.java.JavaPatterns;
 import parser.util.java.CurlyBraces;
 
 public class JavaClassParser extends AClassParser {
@@ -42,10 +42,10 @@ public class JavaClassParser extends AClassParser {
 	private static StringBuilder find(String dir) {
 
 		// requested java class patern (pattern)
-		Paterns p = Paterns.classes;
+		JavaPatterns p = JavaPatterns.classes;
 
-		GetPatern.className = __name;
-		Pattern pa = GetPatern.getPatern(p);
+		GetJavaPattern.className = __name;
+		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = null;
 		StringBuilder sb = new StringBuilder();
 		// line counter

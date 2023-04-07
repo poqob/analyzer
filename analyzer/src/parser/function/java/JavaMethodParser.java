@@ -18,8 +18,8 @@ import models.classes.java.JavaClass;
 import models.function.AFunction;
 import models.function.java.JavaMethod;
 import parser.function.AFunctionParser;
-import parser.patterns.java.GetPatern;
-import parser.patterns.java.Paterns;
+import parser.patterns.java.GetJavaPattern;
+import parser.patterns.java.JavaPatterns;
 import parser.util.java.CurlyBraces;
 
 public class JavaMethodParser extends AFunctionParser {
@@ -36,8 +36,8 @@ public class JavaMethodParser extends AFunctionParser {
 
 	private void _find() {
 		// variables
-		Paterns p = Paterns.method;
-		Pattern pa = GetPatern.getPatern(p);
+		JavaPatterns p = JavaPatterns.method;
+		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
 		CurlyBraces cb;
 

@@ -2,10 +2,10 @@ package parser.patterns.java;
 
 import java.util.regex.Pattern;
 
-public class GetPatern {
+public class GetJavaPattern {
 	public static String className;
 
-	public static Pattern getPatern(Paterns patern) {
+	public static Pattern getPatern(JavaPatterns patern) {
 		switch (patern) {
 		case single:
 			return Pattern.compile("//.*$");

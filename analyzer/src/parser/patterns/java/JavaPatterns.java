@@ -1,5 +1,5 @@
 package parser.patterns.java;
 
-public enum Paterns {
+public enum JavaPatterns {
 	single, multi, javadoc, method, constructor, classes
 }
