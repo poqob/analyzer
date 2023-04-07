@@ -22,6 +22,7 @@ public class Motor {
     public Motor(String motorNo) {
         /*
          * Varolan bir motor no ile oluşturuluyor.
+         * 
          */
         this.motorNo = motorNo;
         calisiyor = false; // false yapılıyor
@@ -29,7 +30,7 @@ public class Motor {
 
     public void calistir() {
         /**
-         * calisiyor true yapılıyor
+         * calisiyor true yapılıyor // TESTTT
          */
         calisiyor = true;
     }
