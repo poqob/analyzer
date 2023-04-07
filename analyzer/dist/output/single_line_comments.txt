@@ -1,18 +1,114 @@
-CONSTRUCTOR: Motor
-	SINGLE-COMMENT: {539,557}
-		// false yapılıyor
+CONSTRUCTOR: JavaCommentParser
+	SINGLE-COMMENT: {35,114}
+		// it keeps only single-lined comments of the class to compare them if they are
+	SINGLE-COMMENT: {116,143}
+		// in other comments range.
+	SINGLE-COMMENT: {231,308}
+		// some methods in class does remove procces from list that contains dedected
+	SINGLE-COMMENT: {310,389}
+		// comments. i wanted to use linked list instead array list inorder to increase
+	SINGLE-COMMENT: {391,471}
+		// performance. it is hard to remove data from array list, if you want to remove
+	SINGLE-COMMENT: {473,549}
+		// somewhere at middles after removing process whole list shifts one unit to
+	SINGLE-COMMENT: {551,605}
+		// fill the space which was created by removed object.
 
 --------------------------------------------------
 
-METHOD: getMotorNo
-	SINGLE-COMMENT: {886,903}
-		// motor no getir
+METHOD: _find
+	SINGLE-COMMENT: {746,763}
+		// trigger method
 
 --------------------------------------------------
 
-METHOD: toString
-	SINGLE-COMMENT: {988,1012}
-		// durum belirlenmesi //
+METHOD: _single
+	SINGLE-COMMENT: {947,1008}
+		// line by line is neccessary to dedect single-line comments.
+	SINGLE-COMMENT: {1010,1088}
+		// multi-line and javadoc comments can dedected by whole JavaClass (as String)
+	SINGLE-COMMENT: {1288,1334}
+		// send lines to single line comment dedector.
+
+--------------------------------------------------
+
+METHOD: _multiComment
+	SINGLE-COMMENT: {1370,1428}
+		// dedects single-line comments according to JavaPatterns.
+	SINGLE-COMMENT: {1476,1543}
+		// thanks to this variable we can only take first match of the line
+	SINGLE-COMMENT: {1546,1622}
+		// this provides me ability to prevent chance of dedect more than one single
+	SINGLE-COMMENT: {1625,1652}
+		// comment at the same line
+	SINGLE-COMMENT: {1655,1707}
+		// _lineSearched value turns true after first match.
+	SINGLE-COMMENT: {1744,1766}
+		// parsing with regex.
+	SINGLE-COMMENT: {1892,1966}
+		// regex exprassion start location in JavaClass (character based location)
+	SINGLE-COMMENT: {1992,2011}
+		// exprassion match
+	SINGLE-COMMENT: {2036,2051}
+		// temp comment
+	SINGLE-COMMENT: {2088,2168}
+		// if exprassion exists then this while creates new JavaSingleComment object and
+	SINGLE-COMMENT: {2171,2249}
+		// adds it to super classes AComment List. Remember JavaSingleComment is a sub
+	SINGLE-COMMENT: {2252,2309}
+		// class of ASingleComment that is sub class of AComment!
+	SINGLE-COMMENT: {2361,2396}
+		// BURASI METHOD OLARAK SINIFLANMIS
+	SINGLE-COMMENT: {2509,2537}
+		// creating new java comment
+	SINGLE-COMMENT: {2718,2753}
+		// dedects multi line java comments
+	SINGLE-COMMENT: {1744,1766}
+		// parsing with regex.
+	SINGLE-COMMENT: {1892,1966}
+		// regex exprassion start location in JavaClass (character based location)
+	SINGLE-COMMENT: {3068,3141}
+		// if exprassion exist creates new JavaMultiComment which is sub class of
+	SINGLE-COMMENT: {3144,3216}
+		// AMultiComment and also AComment. Then adds the object to its parent's
+	SINGLE-COMMENT: {3219,3230}
+		// AComment
+	SINGLE-COMMENT: {3233,3241}
+		// list.
+	SINGLE-COMMENT: {1744,1766}
+		// parsing with regex.
+	SINGLE-COMMENT: {1892,1966}
+		// regex exprassion start location in JavaClass (character based location)
+	SINGLE-COMMENT: {3219,3230}
+		// AComment
+	SINGLE-COMMENT: {3233,3241}
+		// list.
+
+--------------------------------------------------
+
+METHOD: _javadocComment
+	SINGLE-COMMENT: {3470,3497}
+		// dedects javadoc comments
+	SINGLE-COMMENT: {3817,3888}
+		// if exprassion exist creates new JavadocComment which is sub class of
+	SINGLE-COMMENT: {3891,3966}
+		// ADocumentComment and also AComment. Then adds the object to its parent's
+
+--------------------------------------------------
+
+METHOD: parse
+	SINGLE-COMMENT: {4873,4905}
+		// if program reaches this line,
+	SINGLE-COMMENT: {4911,4986}
+		// that means: we have a single-lined function which // in range of another
+	SINGLE-COMMENT: {4992,5065}
+		// multi-line or special comment. lets remove this single // comment that
+	SINGLE-COMMENT: {5071,5105}
+		// already in another comment: :')
+	SINGLE-COMMENT: {5165,5239}
+		// The only accesible method, calls all work and as result of that returns
+	SINGLE-COMMENT: {5241,5258}
+		// AComment list.
 
 --------------------------------------------------
 
