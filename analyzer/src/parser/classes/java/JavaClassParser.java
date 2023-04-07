@@ -22,7 +22,7 @@ import models.classes.java.JavaClass;
 import parser.classes.AClassParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
-import parser.util.java.CurlyBraces;
+import parser.util.java.JavaCurlyBraces;
 
 public class JavaClassParser extends AClassParser {
 	// fields
@@ -122,7 +122,7 @@ public class JavaClassParser extends AClassParser {
 	// takes input file, pure text then turns into AClass object
 	@Override
 	public AClass parseClass() {
-		CurlyBraces brc = new CurlyBraces(_pure);
+		JavaCurlyBraces brc = new JavaCurlyBraces(_pure);
 
 		String struct = getHead() + brc.getBody();
 

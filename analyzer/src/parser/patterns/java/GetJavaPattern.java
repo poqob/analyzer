@@ -2,7 +2,7 @@
 *
 * @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
 * @since 07.04.23
-* @GetJavaPattern enum
+* @GetJavaPattern
 * GetJavaPattern gives compiled pattern with propper regex exprasion.
 * 
 */

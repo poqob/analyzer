@@ -20,7 +20,7 @@ import models.function.java.JavaMethod;
 import parser.function.AFunctionParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
-import parser.util.java.CurlyBraces;
+import parser.util.java.JavaCurlyBraces;
 
 public class JavaMethodParser extends AFunctionParser {
 
@@ -39,7 +39,7 @@ public class JavaMethodParser extends AFunctionParser {
 		JavaPatterns p = JavaPatterns.method;
 		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
-		CurlyBraces cb;
+		JavaCurlyBraces cb;
 
 		int _headIndex = 0;
 		int[] range;
@@ -52,7 +52,7 @@ public class JavaMethodParser extends AFunctionParser {
 			if (super.clss.getName().contains(_getName()))
 				continue;
 			// find body
-			cb = new CurlyBraces(clss.toString().substring(_headIndex));
+			cb = new JavaCurlyBraces(clss.toString().substring(_headIndex));
 
 			// range
 			range = new int[] { _headIndex, cb.getBody().length() + _headIndex + _head.length() };

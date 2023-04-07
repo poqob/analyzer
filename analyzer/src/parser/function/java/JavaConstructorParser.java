@@ -20,7 +20,7 @@ import models.function.java.JavaConstructor;
 import parser.function.AFunctionParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
-import parser.util.java.CurlyBraces;
+import parser.util.java.JavaCurlyBraces;
 
 public class JavaConstructorParser extends AFunctionParser {
 
@@ -39,7 +39,7 @@ public class JavaConstructorParser extends AFunctionParser {
 		JavaPatterns p = JavaPatterns.constructor;
 		Pattern pa = GetJavaPattern.getPatern(p);
 		Matcher matcher = pa.matcher(clss.toString());
-		CurlyBraces cb;
+		JavaCurlyBraces cb;
 
 		int _headIndex = 0;
 		int[] range;
@@ -49,7 +49,7 @@ public class JavaConstructorParser extends AFunctionParser {
 			_head = matcher.group();
 			_headIndex = clss.toString().indexOf(_head);
 			// find function body -blocks-
-			cb = new CurlyBraces(clss.toString().substring(_headIndex));
+			cb = new JavaCurlyBraces(clss.toString().substring(_headIndex));
 
 			// function body (between brackets)range in class
 			range = new int[] { _headIndex, cb.getBody().length() + _headIndex + _head.length() };
