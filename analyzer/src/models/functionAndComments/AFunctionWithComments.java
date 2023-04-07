@@ -52,6 +52,11 @@ public abstract class AFunctionWithComments extends AFunction {
 		return this.function;
 	};
 
+	@Override
+	public String getType() {
+		return this.function.getType();
+	}
+
 	public ArrayList<ASingleComment> getSingleComments() {
 		return sComments;
 	};
