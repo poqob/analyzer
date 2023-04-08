@@ -1,5 +1,7 @@
 package handler.program;
 
+import java.util.Scanner;
+
 import handler.extensions.Extensions;
 import handler.languages.LanguageHandler;
 import handler.messager.Message;
@@ -16,6 +18,10 @@ public class Handler {
 			_two(args);
 		else
 			Messager.send(Message.help);
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("\nPress any key to exit.\n");
+		scanner.nextLine();
+		scanner.close();
 	}
 
 	// java -jar test.jar [-h, --help](optional) : prints to screen possible launch
