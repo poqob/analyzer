@@ -12,18 +12,24 @@ public class Messager {
 			return "No arguments provided, please re-launch for more information with --help or -h parameter";
 
 		case help:
-			return "//java -jar test.jar \r\n"
-					+ "//java -jar test.jar [-h, --help](optional) : prints to screen possible launch parameters\r\n"
-					+ "//java -jar test.jar [--about](optional) : prints to screen readme file content.\r\n"
-					+ "//java -jar test.jar [test.java](required) : input file path\r\n"
-					+ "//java -jar program.jar [example.java](required) [output path](optional) : path must be in this format -without quotes- \"output\\\\\"\r\n"
-					+ "//java -jar program.jar [example.java](required) [-d, --debug](optional) :(debug mode), only gives console output with detailed information.";
+			return "//\njava -jar test.jar \r\n"
+					+ "java -jar test.jar [-h, --help](optional) : prints to screen possible launch parameters\r\n"
+					+ "java -jar test.jar [--about](optional) : prints to screen readme file content.\r\n"
+					+ "java -jar test.jar [test.java](required) : input file path\r\n"
+					+ "java -jar program.jar [example.java](required) [output path](optional) : path must be in this format -without quotes- \"output\\\\\"\r\n"
+					+ "java -jar program.jar [example.java](required) [-d, --debug](optional) :(debug mode), only gives console output with detailed information.";
 
 		case wrong:
-			return "wrong parameters dedected, please re-launch with parameter -h or --help";
+			return "\nwrong parameters dedected, please run with parameter -h or --help to see how to use\n";
 
 		case about:
-			return "about";
+			return "\nIt is a code parser console app/tool. Basicly parses classes.\n"
+					+ "CodeParser designed to scale. in further updates the parser will parse orher languages,\n"
+					+ "the parser will gain more functionality: i'll re-arrange console arguments to obtain input classes\n"
+					+ "wanted components.\n"
+					+ "like: java -jar codeparser.jar example.py [--get funs ~ --get class ~ --get constructor ~ --get libraries]\n"
+					+ "developed by poqob, Mustafa BÝÇER\n" + "github: https://github.com/poqob/analyzer\n"
+					+ "version: 0.1";
 		default:
 			return " ";
 
