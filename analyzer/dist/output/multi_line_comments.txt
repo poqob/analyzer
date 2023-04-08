@@ -1,6 +1,12 @@
-METHOD: _correctSingles
-	MULTI-LINE-COMMENT: {4218,4454}
-		/* 	 * _correctSingles() and _containsAnySingle() methods controlls if a single-line 	 * comment is in another type comment's bounds-rannge-. if it is, the dedected 	 * single comment will be removed from _localComment(LinkedList). 	 */
+CONSTRUCTOR: Motor
+	MULTI-LINE-COMMENT: {214,237}
+		/* Başlangıçta false */
+
+--------------------------------------------------
+
+CONSTRUCTOR: Motor
+	MULTI-LINE-COMMENT: {402,479}
+		/*          * Varolan bir motor no ile oluşturuluyor.          *           */
 
 --------------------------------------------------
 
