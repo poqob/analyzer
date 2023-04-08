@@ -1,3 +1,11 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 04.04.23
+* @Handler 
+* Handler handles situations which comes from console by users.
+*/
+
 package handler.program;
 
 import java.util.Scanner;
@@ -9,6 +17,7 @@ import handler.messager.Messager;
 
 public class Handler {
 
+	// handling flow according to given console parameters.
 	public static void handle(String[] args) throws Exception {
 		if (args.length == 0)
 			Messager.send(Message.noarg);
@@ -32,15 +41,18 @@ public class Handler {
 
 	// java -jar test.jar [test.java](required) : input file path
 	private static void _one(String arg) throws Exception {
+		// to see help documentation.
 		if (arg.equals("-h") || arg.equals("--help")) {
 			Messager.send(Message.help);
 			return;
 		}
+		// to see about codeparser documentation.
 		if (arg.equals("-a") || arg.equals("--about")) {
 			Messager.send(Message.about);
 			return;
 		}
 		boolean match = false;
+		// controlling if codeparser has input file support.
 		for (Extensions extension : Extensions.values()) {
 			if (arg.contains(extension.name())) {
 				// go to handle language
@@ -69,10 +81,16 @@ public class Handler {
 				_extension = extension;
 			}
 		}
+		// debug situation
 		if (args[1].equals("-d") || args[1].equals("--debug") && match)
 			LanguageHandler.handler(_extension, args[0], Mode.debug);
+		// only show on console situation
+		else if (args[1].equals("-s") || args[1].equals("--show") && match)
+			LanguageHandler.handler(_extension, args[0]);
+		// show on console and write output to specifed path situation
 		else if (match)
 			LanguageHandler.handler(_extension, args[0], args[1]);
+		// it will throw exception bu i'm tired :''
 		else
 			Messager.send(Message.wrong);
 
