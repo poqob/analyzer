@@ -48,9 +48,9 @@ public class JavaConstructorParser extends AFunctionParser {
 			// attemt head
 			_head = matcher.group();
 			// addition controlls
-			if (_head.contains("while"))
+			if (_head.contains(" while "))
 				continue;
-			if (_head.contains("if"))
+			if (_head.contains(" if "))
 				continue;
 
 			_headIndex = clss.toString().indexOf(_head);
