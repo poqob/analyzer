@@ -25,7 +25,9 @@ public class Messager {
 					+ "java -jar codeparser.jar [test.java](required) : input file path\r\n"
 					+ "java -jar codeparser.jar [example.java](required) [output path](optional) : path must be in this format -without quotes- \"output\\\\\"\r\n"
 					+ "java -jar codeparser.jar [example.java](required) [-d, --debug](optional) :(debug mode), only gives console output with detailed information.\r\n"
-					+ "java -jar codeparser.jar [example.java] (required)[-s, --show] (optional : only gives console output as summery of the class.\n)";
+					+ "java -jar codeparser.jar [example.java] (required)[-s, --show] (optional : only gives console output as summery of the class.\n)"
+					+ "//java -jar program.jar [example.java](required) [-s, --show] (required) [-c, --constructor] (optional) : writes constructors of the input file to console\r\n"
+					+ "//java -jar program.jar [example.java](required) [-s, --show] (required) [-m, --methods] (optional) : writes methods of input file to console";
 
 		case wrong:
 			return "\nwrong parameters dedected, please run with parameter -h or --help to see how to use\n";

@@ -117,7 +117,7 @@ public class Handler {
 			if (args[2].equals("-m") || args[2].equals("--methods") && match) {
 				LanguageHandler.handler(_extension, args[0], Mode.showMethods);
 			}
-			if (args[2].equals("-c") || args[2].equals("--constructor") && match) {
+			if (args[2].equals("-c") || args[2].equals("--constructors") && match) {
 				LanguageHandler.handler(_extension, args[0], Mode.showConstructors);
 			}
 		}

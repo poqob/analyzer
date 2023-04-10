@@ -195,6 +195,24 @@ public class JavaWriter extends AWriter {
 		System.out.print(expectedOutput);
 	}
 
+	public void writeToConsoleOnlyConstructors() {
+		expectedOutput += clss.getType() + ": " + clss.getName() + "\n\n";
+		clss.getFunctions().forEach(f -> {
+			if (f.getType() == "CONSTRUCTOR")
+				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString() + "\n\n";
+		});
+		System.out.print(expectedOutput);
+	}
+
+	public void writeToConsoleOnlyMethods() {
+		expectedOutput += clss.getType() + ": " + clss.getName() + "\n\n";
+		clss.getFunctions().forEach(f -> {
+			if (f.getType() == "METHOD")
+				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString() + "\n\n";
+		});
+		System.out.print(expectedOutput);
+	}
+
 	// block creator according to function with comments object.
 	private String _functionBlock(AFunctionWithComments func) {
 		String _result = "";
