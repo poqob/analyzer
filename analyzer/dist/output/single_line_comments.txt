@@ -1,18 +1,10 @@
-CONSTRUCTOR: Motor
-	SINGLE-COMMENT: {539,557}
-		// false yapılıyor
-
---------------------------------------------------
-
-METHOD: getMotorNo
-	SINGLE-COMMENT: {886,903}
-		// motor no getir
-
---------------------------------------------------
-
-METHOD: toString
-	SINGLE-COMMENT: {988,1012}
-		// durum belirlenmesi //
+CONSTRUCTOR: AParser
+	SINGLE-COMMENT: {33,42}
+		// fields
+	SINGLE-COMMENT: {296,341}
+		// parse method returns totally parsed class.
+	SINGLE-COMMENT: {377,391}
+		// constructor
 
 --------------------------------------------------
 

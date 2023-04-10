@@ -31,6 +31,9 @@ import util.Todo;
 //java -jar test.jar [test.java](required) : input file path
 //java -jar program.jar [example.java](required) [output path](optional) : path must be in this format -without quotes- "output\\"
 //java -jar program.jar [example.java](required) [-d, --debug](optional) :(debug mode), only gives console output with detailed information.
+//java -jar program.jar [example.java](required) [-s, --show] (optional) : writes output only to console.
+//java -jar program.jar [example.java](required) [-s, --show] (required) [-c, --constructor] (optional) : writes constructors of the input file to console
+//java -jar program.jar [example.java](required) [-s, --show] (required) [-m, --methods] (optional) : writes methods of input file to console
 
 public class CodeParser {
 

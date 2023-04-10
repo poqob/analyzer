@@ -14,6 +14,7 @@ import handler.program.Mode;
 import models.classes.java.JavaClass;
 import parser.java.JavaParser;
 import util.Debug;
+import util.Todo;
 import writer.javaWriter.JavaWriter;
 
 public class JavaHandler {
@@ -33,6 +34,23 @@ public class JavaHandler {
 
 		if (mode == Mode.show)
 			_onlyShowOnConsole(path);
+
+		if (mode == Mode.showConstructors)
+			_onlyShowConstructorsOnConsole(path);
+
+		if (mode == Mode.showMethods)
+			_onlyShowMethodsOnConsole(path);
+	}
+
+	@Todo("write sýnýfýna buradan veri göndereceðiz, write sýnýfý bu veriyi alýp deðerlendirecek.")
+	private static void _onlyShowMethodsOnConsole(String path) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void _onlyShowConstructorsOnConsole(String path) {
+		// TODO Auto-generated method stub
+
 	}
 
 	// initializing fields

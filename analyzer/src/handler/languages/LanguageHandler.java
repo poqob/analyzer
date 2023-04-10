@@ -39,19 +39,6 @@ public class LanguageHandler {
 		}
 	}
 
-	public static void handler(Extensions extension, String path) throws Exception {
-		switch (extension) {
-		case java:
-			_java(path, Mode.show);
-			break;
-		case dart:
-			_dart();
-			break;
-		default:
-			break;
-		}
-	}
-
 	// run java with modes, debug or regular.
 	private static void _java(String path, Mode mode) throws Exception {
 		JavaHandler.handle(path, mode);
