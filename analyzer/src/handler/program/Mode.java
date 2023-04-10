@@ -8,5 +8,5 @@
 package handler.program;
 
 public enum Mode {
-	regular, debug, show
+	regular, debug, show, showMethods, showConstructors
 }
