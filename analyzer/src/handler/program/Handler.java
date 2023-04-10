@@ -25,6 +25,8 @@ public class Handler {
 			_one(args[0]);
 		else if (args.length == 2)
 			_two(args);
+		else if (args.length == 3)
+			_three(args);
 		else
 			Messager.send(Message.help);
 		Scanner scanner = new Scanner(System.in);
@@ -70,7 +72,7 @@ public class Handler {
 
 	// java -jar program.jar [example.java](required) [-d, --debug](optional)
 	// :(debug mode), only gives console output with detailed information.
-
+	// arg0: input file, arg1: output destination
 	private static void _two(String[] args) throws Exception {
 		boolean match = false;
 		Extensions _extension = null;
@@ -84,15 +86,41 @@ public class Handler {
 		// debug situation
 		if (args[1].equals("-d") || args[1].equals("--debug") && match)
 			LanguageHandler.handler(_extension, args[0], Mode.debug);
-		// only show on console situation
+		// only show on console
 		else if (args[1].equals("-s") || args[1].equals("--show") && match)
-			LanguageHandler.handler(_extension, args[0]);
+			LanguageHandler.handler(_extension, args[0], Mode.show);
+
 		// show on console and write output to specifed path situation
 		else if (match)
 			LanguageHandler.handler(_extension, args[0], args[1]);
 		// it will throw exception bu i'm tired :''
 		else
 			Messager.send(Message.wrong);
+
+	}
+
+	// arg0: input file
+	// arg1: "-s" or "--show" flag
+	// arg2: "-m" or "--methods" OR "-c" or "--constructors" flag
+	private static void _three(String[] args) throws Exception {
+		boolean match = false;
+		Extensions _extension = null;
+		// controlling if file is supported by program. (head up extensions.java)
+		for (Extensions extension : Extensions.values()) {
+			if (args[0].contains(extension.name())) {
+				match = true;
+				_extension = extension;
+			}
+		}
+
+		if (args[1].equals("-s") || args[1].equals("--show") && match) {
+			if (args[2].equals("-m") || args[2].equals("--methods") && match) {
+				LanguageHandler.handler(_extension, args[0], Mode.showMethods);
+			}
+			if (args[2].equals("-c") || args[2].equals("--constructor") && match) {
+				LanguageHandler.handler(_extension, args[0], Mode.showConstructors);
+			}
+		}
 
 	}
 }
