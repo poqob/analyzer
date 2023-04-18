@@ -1,3 +1,12 @@
+/**
+*
+* @author Mustafa BÝÇER, mustafa.bicer1@ogr.sakarya.edu.tr
+* @since 08.04.23
+* @JavaWriter
+* JavaWriter is a printer class, at the beggining of the project 
+* i wanted this section can comunicate via interfaces between any other languages
+* class objects. i hope i'll done further developments :D
+*/
 package writer.javaWriter;
 
 import java.io.BufferedWriter;
@@ -199,7 +208,8 @@ public class JavaWriter extends AWriter {
 		expectedOutput += clss.getType() + ": " + clss.getName() + "\n\n";
 		clss.getFunctions().forEach(f -> {
 			if (f.getType() == "CONSTRUCTOR")
-				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString() + "\n\n";
+				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString()
+						+ "\n\n\n";
 		});
 		System.out.print(expectedOutput);
 	}
@@ -208,7 +218,8 @@ public class JavaWriter extends AWriter {
 		expectedOutput += clss.getType() + ": " + clss.getName() + "\n\n";
 		clss.getFunctions().forEach(f -> {
 			if (f.getType() == "METHOD")
-				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString() + "\n\n";
+				expectedOutput += "konum: {" + f.getRange()[0] + "," + f.getRange()[1] + "}\n" + f.toString()
+						+ "\n\n\n";
 		});
 		System.out.print(expectedOutput);
 	}
@@ -218,8 +229,8 @@ public class JavaWriter extends AWriter {
 		String _result = "";
 		_result += "\t" + func.getType() + ": " + func.getName() + "\n";
 		_result += "\t\tnumber of single-line comments: " + func.getSingleComments().size() + "\n";
-		_result += "\t\tnumber of multi-line comments: " + func.getMultiComments().size() + "\n";
-		_result += "\t\tnumber of javadoc comments: " + func.getJavadocComments().size() + "\n";
+		_result += "\t\tnumber of multi-line comments:  " + func.getMultiComments().size() + "\n";
+		_result += "\t\tnumber of javadoc comments:     " + func.getJavadocComments().size() + "\n";
 		_result += divider;
 		return _result;
 	}

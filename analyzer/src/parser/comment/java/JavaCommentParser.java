@@ -26,6 +26,7 @@ import models.comment.java.JavadocComment;
 import parser.comment.ACommentParser;
 import parser.patterns.java.GetJavaPattern;
 import parser.patterns.java.JavaPatterns;
+import util.Todo;
 
 public class JavaCommentParser extends ACommentParser {
 
@@ -49,8 +50,10 @@ public class JavaCommentParser extends ACommentParser {
 		_single();
 		_multiComment();
 		_javadocComment();
-		_correctSingles();
-		super.comments = new ArrayList<AComment>(_localComments);
+		// _correcting();
+		// _correctSingles();
+		// super.comments = new ArrayList<AComment>(_localComments);
+		super.comments = new ArrayList<AComment>(_correcting());
 	};
 
 	// line by line is neccessary to dedect single-line comments.
@@ -162,6 +165,32 @@ public class JavaCommentParser extends ACommentParser {
 		_temp.forEach(comm -> {
 			_containsAnySingle(comm);
 		});
+	}
+
+	int sayacc = -1;
+
+	// correcting comments if one of them is under another one's bounds
+
+	@Todo("coklu yorum icindeki javadoclari da algiliyor :'( ")
+	private ArrayList<AComment> _correcting() {
+
+		ArrayList<AComment> _temp = new ArrayList<AComment>();
+		_localComments.forEach(one -> {
+			sayacc++;
+			_localComments.forEach(another -> {
+				if (!one.equals(another)) {
+					if (!(one.getRange()[0] > another.getRange()[0] && one.getRange()[0] < another.getRange()[1] + 1)) {
+						if (!_temp.contains(one))
+							_temp.add(one);
+					}
+				}
+
+			});
+		});
+		// _localComments.clear();
+		// _temp.forEach(tmp -> _localComments.add(tmp));
+		return _temp;
+
 	}
 
 	private void _containsAnySingle(AComment comm) {
