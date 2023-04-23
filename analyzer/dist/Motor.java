@@ -22,8 +22,8 @@ public class Motor {
     public Motor(String motorNo) {
         /*
          * Varolan bir motor no ile oluşturuluyor.
-         * //
-         * /**
+         * /** cok(javadoc)
+         *  
          */
         this.motorNo = motorNo;
         calisiyor = false; // false yapılıyor
@@ -31,20 +31,20 @@ public class Motor {
 
     public void calistir() {
         /**
-         * calisiyor true yapılıyor // TEST THIS LINE IS NOT A JAVA SINGLE COMMENT :D
+         * calisiyor true yapılıyor //  TEST THIS LINE IS NOT A JAVA SINGLE COMMENT :D
          */
         calisiyor = true;
     }
 
     /**
-     * Motorun durdurulması /*
+     * Motorun durdurulması /* javadoc(cok)
      */
     public void durdur() {
         calisiyor = false;
     }
 
     public String getMotorNo() {
-        // motor no getir /* */
+        // motor no getir /*
         return motorNo;
     }
 

@@ -38,6 +38,7 @@ import util.Todo;
 public class CodeParser {
 
 	public static void main(String[] args) throws Throwable {
+
 		Handler.handle(args);
 	}
 

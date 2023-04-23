@@ -40,6 +40,7 @@ public class JavaCommentParser extends ACommentParser {
 	// somewhere at middles after removing process whole list shifts one unit to
 	// fill the space which was created by removed object.
 	private LinkedList<AComment> _localComments = new LinkedList<AComment>();
+	private LinkedList<AComment> _comments = new LinkedList<AComment>();
 
 	public JavaCommentParser(JavaClass clss) {
 		super(clss);
@@ -50,10 +51,11 @@ public class JavaCommentParser extends ACommentParser {
 		_single();
 		_multiComment();
 		_javadocComment();
-		// _correcting();
-		// _correctSingles();
-		// super.comments = new ArrayList<AComment>(_localComments);
-		super.comments = new ArrayList<AComment>(_correcting());
+
+		_correctSingles();
+		_correctOthers();
+		super.comments = new ArrayList<AComment>(_comments);
+
 	};
 
 	// line by line is neccessary to dedect single-line comments.
@@ -154,11 +156,6 @@ public class JavaCommentParser extends ACommentParser {
 		}
 	}
 
-	/*
-	 * _correctSingles() and _containsAnySingle() methods controlls if a single-line
-	 * comment is in another type comment's bounds-rannge-. if it is, the dedected
-	 * single comment will be removed from _localComment(LinkedList).
-	 */
 	private void _correctSingles() {
 		ArrayList<AComment> _temp = new ArrayList<AComment>();
 		_localComments.forEach(c -> _temp.add(c));
@@ -167,30 +164,32 @@ public class JavaCommentParser extends ACommentParser {
 		});
 	}
 
-	int sayacc = -1;
+	@Todo(" javadoc icinde cok, cok icinde javadoc yorumlari tespit edip silmeliyiz.")
+	// TODO: taktik su; tum javadoclari bul, icindeki cok yorumlari bul ve cok
+	// yorumlari _comments'e ekleme
 
-	// correcting comments if one of them is under another one's bounds
-
-	@Todo("coklu yorum icindeki javadoclari da algiliyor :'( ")
-	private ArrayList<AComment> _correcting() {
-
-		ArrayList<AComment> _temp = new ArrayList<AComment>();
-		_localComments.forEach(one -> {
-			sayacc++;
-			_localComments.forEach(another -> {
-				if (!one.equals(another)) {
-					if (!(one.getRange()[0] > another.getRange()[0] && one.getRange()[0] < another.getRange()[1] + 1)) {
-						if (!_temp.contains(one))
-							_temp.add(one);
-					}
-				}
-
-			});
+	// TODO: cok yorumlari bul, icindeki javadoclari bul ve bunlari _comments'e
+	// ekleme
+	private void _correctOthers() {
+		ArrayList<AComment> _tempMultiple = new ArrayList<AComment>();
+		ArrayList<AComment> _tempJavadoc = new ArrayList<AComment>();
+		_localComments.forEach(y -> {
+			if (y instanceof JavadocComment)
+				_tempJavadoc.add(y);
+			else if (y instanceof JavaMultiComment)
+				_tempMultiple.add(y);
+			else
+				_comments.add(y);
 		});
-		// _localComments.clear();
-		// _temp.forEach(tmp -> _localComments.add(tmp));
-		return _temp;
 
+		// herbir javadoc, multiple iceriyor mu diye kontrol et
+
+		// onceki kontrol basariliysa, her bir multipleyi bub javadocu iceriyor mu diye
+		// kontrol et
+
+		// bu islem de basarili ise javadoc _comments'e eklenebilir
+
+		// aynisini multiple comment icin de yap
 	}
 
 	private void _containsAnySingle(AComment comm) {
