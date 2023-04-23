@@ -7,6 +7,6 @@
 */
 package handler.program;
 
-public enum Mode {
+public enum ProgramMode {
 	regular, debug, show, showMethods, showConstructors
 }

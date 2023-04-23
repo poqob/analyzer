@@ -9,11 +9,12 @@
 */
 package handler.languages;
 
+import handler.JavaHandler;
 import handler.extensions.Extensions;
-import handler.program.Mode;
+import handler.program.ProgramMode;
 
 public class LanguageHandler {
-	public static void handler(Extensions extension, String path, Mode mode) throws Exception {
+	public static void handler(Extensions extension, String path, ProgramMode mode) throws Exception {
 		switch (extension) {
 		case java:
 			_java(path, mode);
@@ -40,7 +41,7 @@ public class LanguageHandler {
 	}
 
 	// run java with modes, debug or regular.
-	private static void _java(String path, Mode mode) throws Exception {
+	private static void _java(String path, ProgramMode mode) throws Exception {
 		JavaHandler.handle(path, mode);
 	}
 

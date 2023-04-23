@@ -6,11 +6,11 @@
 * JavaHandler is a language handler. it handles all situations of run styles for java files.
 * this can be written more accurate to be realistic.
 */
-package handler.languages;
+package handler;
 
 import java.io.IOException;
 
-import handler.program.Mode;
+import handler.program.ProgramMode;
 import models.classes.java.JavaClass;
 import parser.java.JavaParser;
 import util.Debug;
@@ -23,21 +23,21 @@ public class JavaHandler {
 	static JavaWriter writer;
 
 	// run with different program modes according to input parameters.
-	public static void handle(String path, Mode mode) throws Exception {
+	public static void handle(String path, ProgramMode mode) throws Exception {
 		_initialize(path);
-		if (mode == Mode.regular)
+		if (mode == ProgramMode.regular)
 			_regular();
 
-		if (mode == Mode.debug)
+		if (mode == ProgramMode.debug)
 			_debug(path);
 
-		if (mode == Mode.show)
+		if (mode == ProgramMode.show)
 			_onlyShowOnConsole(path);
 
-		if (mode == Mode.showConstructors)
+		if (mode == ProgramMode.showConstructors)
 			_onlyShowConstructorsOnConsole(path);
 
-		if (mode == Mode.showMethods)
+		if (mode == ProgramMode.showMethods)
 			_onlyShowMethodsOnConsole(path);
 	}
 

@@ -6,7 +6,7 @@
 * Handler handles situations which comes from console by users.
 */
 
-package handler.program;
+package handler;
 
 import java.util.Scanner;
 
@@ -14,6 +14,7 @@ import handler.extensions.Extensions;
 import handler.languages.LanguageHandler;
 import handler.messager.Message;
 import handler.messager.Messager;
+import handler.program.ProgramMode;
 
 public class Handler {
 
@@ -59,7 +60,7 @@ public class Handler {
 			if (arg.contains(extension.name())) {
 				// go to handle language
 				match = true;
-				LanguageHandler.handler(extension, arg, Mode.regular);
+				LanguageHandler.handler(extension, arg, ProgramMode.regular);
 			}
 		}
 		if (!match)
@@ -85,10 +86,10 @@ public class Handler {
 		}
 		// debug situation
 		if (args[1].equals("-d") || args[1].equals("--debug") && match)
-			LanguageHandler.handler(_extension, args[0], Mode.debug);
+			LanguageHandler.handler(_extension, args[0], ProgramMode.debug);
 		// only show on console
 		else if (args[1].equals("-s") || args[1].equals("--show") && match)
-			LanguageHandler.handler(_extension, args[0], Mode.show);
+			LanguageHandler.handler(_extension, args[0], ProgramMode.show);
 
 		// show on console and write output to specifed path situation
 		else if (match)
@@ -115,10 +116,10 @@ public class Handler {
 
 		if (args[1].equals("-s") || args[1].equals("--show") && match) {
 			if (args[2].equals("-m") || args[2].equals("--methods") && match) {
-				LanguageHandler.handler(_extension, args[0], Mode.showMethods);
+				LanguageHandler.handler(_extension, args[0], ProgramMode.showMethods);
 			}
 			if (args[2].equals("-c") || args[2].equals("--constructors") && match) {
-				LanguageHandler.handler(_extension, args[0], Mode.showConstructors);
+				LanguageHandler.handler(_extension, args[0], ProgramMode.showConstructors);
 			}
 		}
 

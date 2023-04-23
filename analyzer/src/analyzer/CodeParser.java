@@ -20,7 +20,7 @@
 
 package analyzer;
 
-import handler.program.Handler;
+import handler.Handler;
 import util.Todo;
 
 @Todo("if a real function have commeted and located in a comment but classified as a function!!!!")
