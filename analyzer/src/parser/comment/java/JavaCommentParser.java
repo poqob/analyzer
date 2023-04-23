@@ -170,26 +170,63 @@ public class JavaCommentParser extends ACommentParser {
 
 	// TODO: cok yorumlari bul, icindeki javadoclari bul ve bunlari _comments'e
 	// ekleme
+	int _index;
+
 	private void _correctOthers() {
+		_index = -1;
 		ArrayList<AComment> _tempMultiple = new ArrayList<AComment>();
 		ArrayList<AComment> _tempJavadoc = new ArrayList<AComment>();
+		/*
+		 * getting multipe and javadocument comments from _localComments list variable.
+		 * purpose of that, to compare these comments inorder to one is in another
+		 * situation.
+		 */
 		_localComments.forEach(y -> {
 			if (y instanceof JavadocComment)
 				_tempJavadoc.add(y);
 			else if (y instanceof JavaMultiComment)
 				_tempMultiple.add(y);
-			else
+			else // add single lined comments to _comments
 				_comments.add(y);
 		});
 
-		// herbir javadoc, multiple iceriyor mu diye kontrol et
+		ArrayList<Integer> _multiplesWillBeRemoved = new ArrayList<Integer>();
+		ArrayList<Integer> _javadocsWillBeRemoved = new ArrayList<Integer>();
 
-		// onceki kontrol basariliysa, her bir multipleyi bub javadocu iceriyor mu diye
-		// kontrol et
+		// controlling if there is a javadocument comment in range of any multiple
+		// comment.
+		_tempMultiple.forEach(m -> {
+			// to reset index because temp javadoc comment list gonna be iterated again.
+			_index = -1;
+			_tempJavadoc.forEach(j -> {
+				_index++;
+				if (j.getRange()[0] > m.getRange()[0] && j.getRange()[1] <= m.getRange()[1]) {
+					_javadocsWillBeRemoved.add(_index);
+				}
+			});
+		});
 
-		// bu islem de basarili ise javadoc _comments'e eklenebilir
+		// controlling if there is a multipe comment in range of any javadoc
+		// comment.
+		_tempJavadoc.forEach(j -> {
+			// to reset index because temp multiple comment list gonna be iterated again.
+			_index = -1;
+			_tempMultiple.forEach(m -> {
+				_index++;
+				if (m.getRange()[0] > j.getRange()[0] && m.getRange()[1] <= j.getRange()[1]) {
+					_multiplesWillBeRemoved.add(_index);
+				}
+			});
+		});
 
-		// aynisini multiple comment icin de yap
+		// delete found indexes from temp lists.
+		_multiplesWillBeRemoved.forEach(mi -> _tempMultiple.remove(mi.intValue()));
+		_javadocsWillBeRemoved.forEach(ji -> _tempJavadoc.remove(ji.intValue()));
+
+		// add correct comments to the _comments variable
+		_tempMultiple.forEach(m -> _comments.add(m));
+		_tempJavadoc.forEach(j -> _comments.add(j));
+
 	}
 
 	private void _containsAnySingle(AComment comm) {
